@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('standard_backend_app.urls')),
+    path('get_working_hours/', include('standard_backend_app.urls')),
+    path('list_categories/', include('standard_backend_app.urls')),
 ]
