@@ -21,4 +21,9 @@ urlpatterns = [
     path('', include('standard_backend_app.urls')),
     path('get_working_hours/', include('standard_backend_app.urls')),
     path('list_categories/', include('standard_backend_app.urls')),
+    path('create_user/', include('standard_backend_app.urls')),
+    path('makeorder/', include('standard_backend_app.urls')),
+    path('list_user_orders/', include('standard_backend_app.urls')),
+    path('list_users/', include('standard_backend_app.urls')),
+    path('list_products/', include('standard_backend_app.urls')),
 ]

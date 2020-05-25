@@ -687,7 +687,304 @@ def list_categories(request):
     except Exception as e:
         return f"An Error Occured: {e}"
 
-# @app.route('/get_working_hours', methods=['GET'])
+def create_user(request):
+    # user_id = users_ref.document().id
+
+    # print("Posted file: {}".format(request.files['image_file']))
+    # file = request.files['image_file']
+    # files = {'file': file.read()}
+
+    print(request)
+
+    uid = request.POST['uid']
+    name = request.POST['name']
+    email = request.POST['email']
+    phone = request.POST['phone']
+    street = request.POST['street']
+    streetNumber = request.POST['streetNumber']
+    neighborhood = request.POST['neighborhood']
+    city = request.POST['city']
+    imgUrl = request.POST['img_url']
+    isRegisterComplete = request.POST['isRegisterComplete']
+
+    # print('entrou2', file=sys.stdout, flush=True)
+
+    if request.POST['hasImageFile'] == "True":
+        image = request.FILES['image_file'].read()
+        print('imagem não é nula', file=sys.stdout, flush=True)
+        # print(u'Received document snapshot: {}'.format(doc.id))
+
+        # session = ftplib.FTP_TLS('157.230.167.73', 'root', '27031984As')
+        # # file = open('kitten.jpg', 'rb')  # file to send
+        # session.storbinary('STOR /var/www/powermemes.com/dommarino/{}.jpg'.format(uid), image)  # send the file
+        # image.close()  # close file and FTP
+        # session.quit()
+
+        cnopts = pysftp.CnOpts()
+        cnopts.hostkeys = None
+
+        with pysftp.Connection(host='157.230.167.73', username='root', password='27031984As', cnopts=cnopts) as sftp:
+            print("Connection succesfully stablished ... ")
+
+            # Switch to a remote directory
+
+            if not sftp.isdir('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid)):
+                sftp.mkdir('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid))
+
+
+            sftp.cwd('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid))
+
+            img_id = str(uuid.uuid1())
+
+            print('imge id={}'.format(img_id))
+
+            f = sftp.open('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{0}/{1}.png'.format(uid, img_id), 'wb')
+            f.write(image)
+
+            # sftp.put(image.file.name, '/var/www/powermemes.com/dommarino/{}.jpg'.format(uid))
+
+        # print(products_id)
+        imgUrl = "https://powermemes.com/pizzerias/dommarino/userimg/{0}/{1}.png".format(uid, img_id)
+
+    elif imgUrl=="":
+        imgUrl="https://powermemes.com/pizzerias/dommarino/userimg/avatar.png"
+
+    data = {
+        u'uid': u'{}'.format(uid),
+        u'name': u'{}'.format(name),
+        u'email': u'{}'.format(email),
+        u'phone': u'{}'.format(phone),
+        u'street': u'{}'.format(street),
+        u'streetNumber': u'{}'.format(streetNumber),
+        u'neighborhood': u'{}'.format(neighborhood),
+        u'city': u'{}'.format(city),
+        u'image_url': u'{}'.format(imgUrl),
+        u'isRegisterComplete': u'{}'.format(isRegisterComplete),
+    }
+
+    users_ref.document(uid).set(data)
+
+    print(data)
+    return JsonResponse({"success": True}, content_type="application/json")
+    # jsonify({"success": True}), 200
+    # print(image)
+
+def makeorder(request):
+
+    # dd/mm/YY
+    # today = datetime.now()
+    # # today = today.strftime("%d-%m-%Y")
+    # today = today.strftime("%Y-%m-%d %H:%M:%S")
+
+    request_json = json.loads(request.body)
+
+    # print(json.loads(request.body)['date_time'])
+    today = request_json['date_time']#.get('date_time')
+    # print('entrou')
+
+
+    startdata = {
+        u'id': u'{0}'.format(today[:-9])
+    }
+
+    thisOrderRef = orders_ref.document(today[:-9])
+
+    thisOrderRef.set(startdata)
+    thisOrderRef = thisOrderRef.collection(today[:-9])
+    order_ref_for_update = thisOrderRef
+
+    # print("hoje é: {0}".format(today))
+
+    try:
+        coupon_id = request_json['coupon_id']
+        delivery = request_json['delivery']
+        payment_method = request_json['payment_method']
+        payment_change = request_json['payment_change']
+        delivery_address = request_json['delivery_address']
+        total = request_json['total']
+        userId = request_json['userId']
+        id = thisOrderRef.document().id
+        products_id = request_json['products_id']
+
+        # print(products_id)
+
+        data = {
+            u'coupon_id': u'{}'.format(coupon_id),
+            u'dateTime': u'{}'.format(today),
+            u'id': u'{}'.format(id),
+            u'delivery': u'{}'.format(delivery),
+            u'payment_method': u'{}'.format(payment_method),
+            u'payment_change': u'{}'.format(payment_change),
+            u'delivery_address': u'{}'.format(delivery_address),
+            u'total': u'{}'.format(total),
+            u'userId': u'{}'.format(userId)
+        }
+
+        thisOrderRef.document(id).set(data)
+        thisOrderRef = thisOrderRef.document(id).collection('products_id')
+
+        #product.update({'price_broto': None})
+        # product_dict = literal_eval(products_id)
+        json_acceptable_string = products_id.replace("'", "\"")
+        product_dict = json.loads(json_acceptable_string)
+        # print(product_dict)
+
+        total_paid = Decimal('0.00')
+
+        for key, value in product_dict.items():
+            product = value
+            thisId = thisOrderRef.document().id
+
+            paid_price = 0.00
+            pizza_edge_price = 0.00
+            pizza_edge_description = ""
+            product_description = ""
+            img_url = ""
+            all_items = []
+
+            if product.get("isTwoFlavoredPizza") == 0:
+                if product.get("product1_category") == "beers":
+                    all_items.extend(all_beers)
+                elif product.get("product1_category") == "alcoholic_beverages":
+                    all_items.extend(all_alcoholic_beverages)
+                elif product.get("product1_category") == "flapts":
+                    all_items.extend(all_flapts)
+                elif product.get("product1_category") == "non_alcoholic_beverages":
+                    all_items.extend(all_non_alcoholic_beverages)
+                elif product.get("product1_category") == "promotions":
+                    all_items.extend(all_promotions)
+                elif product.get("product1_category") == "wines":
+                    all_items.extend(all_wines)
+                elif product.get("product1_category") == "candy_pizzas":
+                    all_items.extend(all_candy_pizzas)
+                elif product.get("product1_category") == "gourmet_pizzas":
+                    all_items.extend(all_gourmet_pizzas)
+                elif product.get("product1_category") == "traditional_pizzas":
+                    all_items.extend(all_traditional_pizzas)
+
+                if "pizza" not in product.get("product1_category"):
+                    for item in all_items:
+                        if item.get('id') == product.get("product_id"):
+                            paid_price = item.get("price")
+                            product_description = item.get('description')
+                            img_url = item.get('image')
+
+                else:
+                    if product.get("pizza_edge_id") != "null":
+                        for pizza_edge in all_pizza_edges:
+                            if pizza_edge.get('id') == product.get("pizza_edge_id"):
+                                pizza_edge_description = pizza_edge.get("description")
+                                if product.get("size") == "Broto":
+                                    pizza_edge_price = pizza_edge.get("price_broto")
+                                if product.get("size") == "Inteira":
+                                    pizza_edge_price = pizza_edge.get("price_inteira")
+
+                    for item in all_items:
+                        if item.get('id') == product.get("product_id"):
+                            product_description = item.get('description')
+                            img_url = item.get('image')
+
+                            if product.get("size") == "Broto":
+                                paid_price = item.get("price_broto")
+                            if product.get("size") == "Inteira":
+                                paid_price = item.get("price_inteira")
+
+                    new_price = Decimal(paid_price)+Decimal(pizza_edge_price)
+                    paid_price = round(new_price, 2)
+            else:
+                product1_price = 0.00
+                product2_price = 0.00
+
+                if product.get("pizza_edge_id") != "null":
+                    for pizza_edge in all_pizza_edges:
+                        if pizza_edge.get('id') == product.get("pizza_edge_id"):
+                            pizza_edge_description = pizza_edge.get("description")
+                            if product.get("size") == "Broto":
+                                pizza_edge_price = pizza_edge.get("price_broto")
+                            if product.get("size") == "Inteira":
+                                pizza_edge_price = pizza_edge.get("price_inteira")
+
+                if product.get("product1_category") == "traditional_pizzas":
+                    all_items.extend(all_traditional_pizzas)
+                elif product.get("product1_category") == "gourmet_pizzas":
+                    all_items.extend(all_gourmet_pizzas)
+                elif product.get("product1_category") == "candy_pizzas":
+                    all_items.extend(all_candy_pizzas)
+
+                for product1 in all_items:
+                    if product1.get('id') == product.get("product_id"):
+                        product_description = product1.get('description')
+                        img_url = "https://storage.googleapis.com/dom-marino-ws.appspot.com/categories/custom/two_flavored_pizza_image.png"
+
+                        if product.get("size") == "Broto":
+                            product1_price = product1.get("price_broto")
+                        if product.get("size") == "Inteira":
+                            product1_price = product1.get("price_inteira")
+
+                all_items = []
+                if product.get("product2_category") == "traditional_pizzas":
+                    all_items.extend(all_traditional_pizzas)
+                elif product.get("product2_category") == "gourmet_pizzas":
+                    all_items.extend(all_gourmet_pizzas)
+                elif product.get("product2_category") == "candy_pizzas":
+                    all_items.extend(all_candy_pizzas)
+
+                for product2 in all_items:
+                    if product2.get('id') == product.get("product2_id"):
+                        product_description += " + "+product2.get('description')
+                        if product.get("size") == "Broto":
+                            product2_price = product2.get("price_broto")
+                        if product.get("size") == "Inteira":
+                            product2_price = product2.get("price_inteira")
+
+                product1_decimal_price = Decimal(product1_price)
+                product2_decimal_price = Decimal(product2_price)
+
+                max_price = max(product1_decimal_price, product2_decimal_price)
+
+                pizza_edge_decimal_price = Decimal(pizza_edge_price)
+                max_price_decimal = Decimal(max_price)
+
+                new_price = max_price_decimal+pizza_edge_decimal_price
+                paid_price = new_price
+
+            thisProduct = {
+                u'category': u'{}'.format(product.get("category")),
+                u'notes': u'{}'.format(product.get("notes")),
+                u'id': u'{}'.format(thisId),
+                u'paid_price': u'{}'.format(paid_price),
+                u'pizza_edge_id': u'{}'.format(product.get("pizza_edge_id")),
+                u'pizza_edge_description': u'{}'.format(pizza_edge_description),
+                u'pizza_edge_paid_price': u'{}'.format(pizza_edge_price),
+                u'product1_category': u'{}'.format(product.get("product1_category")),
+                u'product2_category': u'{}'.format(product.get("product2_category")),
+                u'product2_id': u'{}'.format(product.get("product2_id")),
+                u'product_description': u'{}'.format(product_description),
+                u'product_id': u'{}'.format(product.get("product_id")),
+                u'product_image_url': u'{}'.format(img_url),
+                u'quantity': u'{}'.format(product.get("quantity")),
+                u'isTwoFlavoredPizza': u'{}'.format(product.get("isTwoFlavoredPizza")),
+                u'size': u'{}'.format(product.get("size"))
+            }
+
+            total_paid += Decimal(paid_price)*Decimal(product.get("quantity"))
+
+            thisOrderRef.document(thisId).set(thisProduct)
+
+        delivery_tax_ref_snapshot = db.collection('delivery_tax').document('current_tax').get()
+        tax = delivery_tax_ref_snapshot.to_dict()['value']
+
+        if delivery_address.lower() != "retirada":
+            total_paid += Decimal(tax)
+
+        order_ref_for_update.document(id).update({u'total': str(round(total_paid, 2))})
+
+        # print('chegou aqui')
+        # return jsonify({"success": True}), 200
+        return JsonResponse({"success": True}, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
 def get_working_hours(request):
     # week_day = request.args.get('weekDay')
     week_day = request.GET.get('weekDay')
@@ -701,3 +998,137 @@ def get_working_hours(request):
     # return jsonify(docSnapshot.to_dict()), 200
     return JsonResponse(data, content_type="application/json")
     # return HttpResponse(docSnapshot.to_dict())
+
+def list_user_orders(request):
+    """
+        read() : Fetches documents from Firestore collection as JSON
+        todo : Return document that matches query ID
+        all_todos : Return all documents
+    """
+    all_orders=[]
+    user_id = request.GET.get('id')
+    docSnapshot = orders_ref.stream()
+
+    for doc in docSnapshot:
+        data_stream = orders_ref.document(doc.id).collection(doc.id).where(u'userId', u'==', user_id).stream()
+
+        for order in data_stream:
+            thisOrder = order.to_dict()
+            tempMap = dict()
+            products_stream = orders_ref.document(doc.id).collection(doc.id).document(order.id).collection("products_id").stream()
+            # thisProductDict = {}
+            for product in products_stream:
+                thisProduct = product.to_dict()
+                # thisOrder["products_id"][product.id] = thisProduct
+                tempMap[product.id] = thisProduct
+
+
+            thisOrder.update({"products_id": tempMap})
+            # print(thisProduct)
+
+            all_orders.append(thisOrder)
+
+
+    try:
+        # Check if ID was passed to URL query
+        return JsonResponse(all_orders, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+def list_users(request):
+    """
+        read() : Fetches documents from Firestore collection as JSON
+        todo : Return document that matches query ID
+        all_todos : Return all documents
+    """
+
+    try:
+        # Check if ID was passed to URL query
+        user_id = request.GET.get('uid')
+
+        if user_id:
+            user_snapshot = users_ref.document(user_id).get()
+            user = user_snapshot.to_dict()
+            return JsonResponse(user, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            return JsonResponse(all_users, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+def list_products(request):
+    """
+        read() : Fetches documents from Firestore collection as JSON
+        todo : Return document that matches query ID
+        all_todos : Return all documents
+    """
+    # while len(all_traditional_pizzas) == 0:
+    #     time.sleep(1)
+
+    # print(request.GET)
+
+    try:
+        # Check if ID was passed to URL query
+        product_id = request.GET.get('id')
+        category = request.GET.get('category')
+
+        all_items = []
+        if category == "beers":
+            while len(all_beers) == 0:
+                time.sleep(1)
+            all_items.extend(all_beers)
+        elif category == "alcoholic_beverages":
+            while len(all_alcoholic_beverages) == 0:
+                time.sleep(1)
+            all_items.extend(all_alcoholic_beverages)
+        elif category == "flapts":
+            while len(all_flapts) == 0:
+                time.sleep(1)
+            all_items.extend(all_flapts)
+        elif category == "non_alcoholic_beverages":
+            while len(all_non_alcoholic_beverages) == 0:
+                time.sleep(1)
+            all_items.extend(all_non_alcoholic_beverages)
+        elif category == "promotions":
+            while len(all_promotions) == 0:
+                time.sleep(1)
+            all_items.extend(all_promotions)
+        elif category == "wines":
+            while len(all_wines) == 0:
+                time.sleep(1)
+            all_items.extend(all_wines)
+        elif category == "candy_pizzas":
+            while len(all_candy_pizzas) == 0:
+                time.sleep(1)
+            all_items.extend(all_candy_pizzas)
+        elif category == "gourmet_pizzas":
+            while len(all_gourmet_pizzas) == 0:
+                time.sleep(1)
+            all_items.extend(all_gourmet_pizzas)
+        elif category == "traditional_pizzas":
+            while len(all_traditional_pizzas) == 0:
+                time.sleep(1)
+            all_items.extend(all_traditional_pizzas)
+        elif category == "pizza_edges":
+            while len(all_pizza_edges) == 0:
+                time.sleep(1)
+            all_items.extend(all_pizza_edges)
+        elif category == "two_flavored_pizzas":
+            while len(all_two_flavored_pizzas) == 0:
+                time.sleep(1)
+            all_items.extend(all_two_flavored_pizzas)
+
+        if product_id:
+            product = object
+            for element in all_items:
+                if element['id'] == product_id:
+                    product = element
+            # nab = non_alcoholic_beverages_ref.document(nab_id).get()
+            return JsonResponse(product, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            return JsonResponse(all_items, safe=False, content_type="application/json")
+
+
+    except Exception as e:
+        return f"An Error Occured: {e}"
