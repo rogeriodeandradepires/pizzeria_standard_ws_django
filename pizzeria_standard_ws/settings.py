@@ -43,11 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'standard_backend_app.apps.PizzariaStandardWsProjectConfig',
+    'pandras_homepage.apps.PandrasHomepageConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -69,7 +71,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Enable {{ STATIC_URL }} and {{ MEDIA_URL }}
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
+            # 'loaders':[
+            #     'django.template.loaders.filesystem.Loader',
+            # ]
         },
     },
 ]
@@ -81,10 +90,42 @@ WSGI_APPLICATION = 'pizzeria_standard_ws.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {'ENGINE': 'django.db.backends.mysql'},
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.standard'),
+        'NAME': 'standard_project',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+    },
+    'standard': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'standard_project',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+    },
+    'dom_marino': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dom_marino',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+    },
+
+    'pandras': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pandras',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+    },
+    # 'adminNeto': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'kingticom_oca639',
+    #     'HOST': '144.217.28.12',
+    #     'PORT': '3303',
+    #     'USER': 'kingticom_oca639',
+    #     'PASSWORD': 'tst.2020.app'
+    # }
 }
 
 
@@ -110,9 +151,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -123,9 +164,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [BASE_DIR, os.path.join('pandras_homepage/templates/'),
+    BASE_DIR, os.path.join('/media/'), BASE_DIR, os.path.join('/static/')]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # GOOGLE_APPLICATION_CREDENTIALS = os.path.join(
 #     BASE_DIR,
 #     env('GOOGLE_APPLICATION_CREDENTIALS'),

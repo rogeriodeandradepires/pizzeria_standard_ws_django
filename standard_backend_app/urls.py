@@ -1,11 +1,13 @@
 # pages/urls.py
 from django.urls import path
 
-from .views import homePageView, get_working_hours, list_categories, create_user, makeorder, list_user_orders, \
+from pandras_homepage.views import TestHomePage
+from django.contrib import admin
+from .views import get_working_hours, list_categories, create_user, makeorder, list_user_orders, \
     list_users, list_products
 
 urlpatterns = [
-    path('', homePageView, name='home'),
+    # path('', homePageView, name='home'),
     path('get_working_hours/', get_working_hours, name='working_hours'),
     path('list_categories/', list_categories, name='list_categories'),
     path('create_user/', create_user, name='create_user'),

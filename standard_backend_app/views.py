@@ -1,6 +1,9 @@
 import ast
 from datetime import time
 
+import MySQLdb
+from django.db import connections
+
 from django.core import serializers
 from django.shortcuts import render
 
@@ -19,6 +22,7 @@ from decimal import Decimal
 import pysftp
 import sys
 import uuid
+import MySQLdb.cursors
 from standard_backend_app.apps import firebase_app
 
 # cred = credentials.Certificate("dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json")
@@ -40,7 +44,7 @@ from standard_backend_app.apps import firebase_app
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
 # if not firebase_admin._apps:
 #     firebase_admin.initialize_app(cred, newDict, 'Django')
-
+from standard_backend_app.models import Categoria
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
 
@@ -49,6 +53,24 @@ client = storage.Client()
 bucket = client.get_bucket('dom-marino-ws.appspot.com')
 db = firestore.client()
 # print(db.collection('todos').document('GetRkRdqhNTrdQ2wcvGE').get().to_dict())
+
+
+
+# cursor = connections['adminNeto'].cursor() # Replace 'cust' to other defined databases if necessary.
+# cursor.execute("select * from ockf_product")
+# results = cursor.fetchall()
+# cursor.close()
+
+# conn = MySQLdb.connect(host='144.217.28.12',
+#                          user='kingticom_oca639',
+#                          passwd='tst.2020.app',
+#                          port=3303,
+#                          db='kingticom_oca639',)
+# cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+# cursor.execute("select * from ockf_product")
+# results = cursor.fetchall()
+# cursor.close()
+# print(results)
 
 imageurl = ''
 thumbnailurl = ''
@@ -104,10 +126,18 @@ def on_categories_snapshot(doc_snapshot, changes, read_time):
     global all_categories
     all_categories = []
 
+    querySetTuple = Categoria.objects.values()
+    all_categories_db = [entry for entry in querySetTuple]
+
     for doc in doc_snapshot:
         category = doc.to_dict()
         all_categories.append(category)
-        # print(category["description"])
+
+        if category not in all_categories_db:
+            m = Categoria(**category)
+            m.save(using='standard')
+        # else:
+        #     print('já tem na lista: ', category)
 
 
 def on_nab_snapshot(doc_snapshot, changes, read_time):
@@ -562,20 +592,20 @@ def on_users_snapshot(doc_snapshot, changes, read_time):
         all_users.append(user)
 
 
-# Watch the document
-cat_watch = categories_ref.on_snapshot(on_categories_snapshot)
-nab_watch = non_alcoholic_beverages_ref.on_snapshot(on_nab_snapshot)
-ab_watch = alcoholic_beverages_ref.on_snapshot(on_ab_snapshot)
-beers_watch = beers_ref.on_snapshot(on_beers_snapshot)
-candy_pizzas_watch = candy_pizzas_ref.on_snapshot(on_candy_pizzas_snapshot)
-flapts_watch = flapts_ref.on_snapshot(on_flapts_snapshot)
-pizza_edges_watch = pizza_edges_ref.on_snapshot(on_pizza_edges_snapshot)
-traditional_pizzas_watch = traditional_pizzas_ref.on_snapshot(on_traditional_pizzas_snapshot)
-gourmet_pizzas_watch = gourmet_pizzas_ref.on_snapshot(on_gourmet_pizzas_snapshot)
-wines_watch = wines_ref.on_snapshot(on_wines_snapshot)
-promotions_watch = promotions_ref.on_snapshot(on_promotions_snapshot)
-two_flavored_pizzas_watch = two_flavored_pizzas_ref.on_snapshot(on_two_flavored_pizzas_snapshot)
-users_watch = users_ref.on_snapshot(on_users_snapshot)
+#Watch the document
+# cat_watch = categories_ref.on_snapshot(on_categories_snapshot)
+# nab_watch = non_alcoholic_beverages_ref.on_snapshot(on_nab_snapshot)
+# ab_watch = alcoholic_beverages_ref.on_snapshot(on_ab_snapshot)
+# beers_watch = beers_ref.on_snapshot(on_beers_snapshot)
+# candy_pizzas_watch = candy_pizzas_ref.on_snapshot(on_candy_pizzas_snapshot)
+# flapts_watch = flapts_ref.on_snapshot(on_flapts_snapshot)
+# pizza_edges_watch = pizza_edges_ref.on_snapshot(on_pizza_edges_snapshot)
+# traditional_pizzas_watch = traditional_pizzas_ref.on_snapshot(on_traditional_pizzas_snapshot)
+# gourmet_pizzas_watch = gourmet_pizzas_ref.on_snapshot(on_gourmet_pizzas_snapshot)
+# wines_watch = wines_ref.on_snapshot(on_wines_snapshot)
+# promotions_watch = promotions_ref.on_snapshot(on_promotions_snapshot)
+# two_flavored_pizzas_watch = two_flavored_pizzas_ref.on_snapshot(on_two_flavored_pizzas_snapshot)
+# users_watch = users_ref.on_snapshot(on_users_snapshot)
 
 def monitor_watches():
     global cat_watch
@@ -634,14 +664,14 @@ def monitor_watches():
         users_watch = users_ref.on_snapshot(on_users_snapshot)
 
 
-monitor_watches()
+# monitor_watches()
 
 def setImageUrl(url):
     global imageurl
     imageurl = url
 
-def homePageView(request):
-    return HttpResponse('Hello, World!')
+# def homePageView(request):
+#     return HttpResponse('Hello, World!')
 
 def list_categories(request):
     """

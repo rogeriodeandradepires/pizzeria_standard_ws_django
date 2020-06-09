@@ -9,5 +9,21 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\roger\Desktop\flutter_projects\django\pizzeria_standard_ws\db.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Django adminNeto" uuid="d1df839d-96b2-402a-be13-725c687a4ea2">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/pizzeria_standard_ws/settings.py</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://144.217.28.12:3303/kingticom_oca639</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Django default2" uuid="3c50e4b1-42de-4850-84cb-552c5a33a420">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/pizzeria_standard_ws/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\roger\Desktop\flutter_projects\django\pizzeria_standard_ws\db.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>

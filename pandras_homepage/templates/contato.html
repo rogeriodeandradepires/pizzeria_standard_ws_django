@@ -1,0 +1,1219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR" prefix="og: http://ogp.me/ns#">
+<!-- Mirrored from PANDRAS.com.br/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 19:34:00 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <title>PANDRAS - Studio</title>
+    <meta name="description"
+          content="Somos um estúdio de desenvolvimento de aplicativos que desenvolve aplicativos mobile e web. Com anos de experiência e um time de programadores de nível sênior, já cocriamos projetos de diferentes tamanhos e níveis de complexibilidade."/>
+    <meta name="robots" content="follow,index,"/>
+    <link rel="icon" type="image/png" href="{% static 'wp-content/uploads/2018/09/fav_ico2.png' %}"/>
+    <link rel="canonical" href="{% url 'home' %}"/>
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PANDRAS - Studio">
+    <meta property="og:description"
+          content="Somos um estúdio de desenvolvimento de aplicativos que desenvolve aplicativos mobile e web. Com anos de experiência e um time de programadores de nível sênior, já cocriamos projetos de diferentes tamanhos e níveis de complexibilidade.">
+    <meta property="og:url" content="index.html">
+    <meta property="og:site_name" content="PANDRAS">
+    <meta property="og:image" content="wp-content/uploads/2019/07/avatar.png">
+    <meta property="og:image:secure_url" content="wp-content/uploads/2019/07/avatar.png">
+    <meta property="og:image:width" content="240">
+    <meta property="og:image:height" content="240">
+    <meta property="og:image:alt" content="PANDRAS">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PANDRAS - Studio">
+    <meta name="twitter:description"
+          content="Somos um estúdio de desenvolvimento de aplicativos que desenvolve aplicativos mobile e web. Com anos de experiência e um time de programadores de nível sênior, já cocriamos projetos de diferentes tamanhos e níveis de complexibilidade.">
+    <meta name="twitter:creator" content="@likeaPANDRAS">
+    <meta name="twitter:image" content="wp-content/uploads/2019/07/avatar.png">
+
+
+    <link href="{% static 'css/coming-soon.min.css' %}" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/init.js"></script>
+
+    <script src="{% static 'js/coming-soon.min.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/coming-soon.min.css' %}" rel="stylesheet">
+
+
+    <script type="application/ld+json">[
+        {
+            "@context": "https:\/\/schema.org",
+            "@type": "WebSite",
+            "@id": "https:\/\/pandras.com.br\/#website",
+            "url": "https:\/\/pandras.com.br",
+            "name": "PANDRAS",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https:\/\/pandras.com.br\/?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        },
+        {
+            "@context": "https:\/\/schema.org",
+            "@type": "Article",
+            "headline": "PANDRAS - Studio",
+            "description": "\u2715 Home Servi\u00e7os Trabalhos FAQ contato Or\u00e7amento Desenvolvimento de aplicativo web e mobile Somos um f\u00e1brica de aplicativos, composto por progra",
+            "datePublished": "2018-08-16T13:26:23+00:00",
+            "dateModified": "2019-08-14T18:48:47+00:00",
+            "publisher": {
+                "@type": "Organization",
+                "name": "PANDRAS",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/pandras.com.br\/wp-content\/uploads\/2019\/07\/avatar.png"
+                }
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https:\/\/PANDRAS.com.br"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "PANDRAS"
+            },
+            "image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/PANDRAS.com.br\/wp-content\/uploads\/2019\/07\/avatar.png",
+                "width": 240,
+                "height": 240
+            }
+        },
+        {
+            "@context": "https:\/\/schema.org",
+            "@type": "Organization",
+            "@id": "https:\/\/PANDRAS.com.br#organization",
+            "name": "PANDRAS",
+            "url": "https:\/\/PANDRAS.com.br",
+            "sameAs": [
+                "http:\/\/facebook.com\/PANDRAS",
+                "https:\/\/www.instagram.com\/PANDRAS\/"
+            ],
+            "email": "contato@pandras.com.br",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "",
+                "addressLocality": "Birigui",
+                "addressRegion": "São Paulo",
+                "postalCode": "16200-000",
+                "addressCountry": "Brasil"
+            },
+            "logo": "https:\/\/PANDRAS.com.br\/wp-content\/uploads\/2019\/07\/avatar.png",
+            "contactPoint": [
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "27992046425",
+                    "contactType": "customer support"
+                }
+            ]
+        }
+    ]</script>
+    <link rel='dns-prefetch' href="{% static '../js.hs-scripts.com/index.html' %}"/>
+    <link rel='dns-prefetch' href="{% static '../fonts.googleapis.com/index.html' %}"/>
+    <link rel="alternate" type="application/rss+xml" title="Feed para PANDRAS &raquo;" href="{% static 'feed/index.html' %}"/>
+    <link rel="alternate" type="application/rss+xml" title="Feed de comentários para PANDRAS &raquo;"
+          href="{% static 'comments/feed/index.html' %}"/>
+    <style type="text/css">img.wp-smiley, img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important
+    }</style>
+    <link rel='stylesheet' id='jet-menu-hfe-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/integration/plugins/header-footer-elementor/assets/css/style-1.5.14.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='wp-block-library-css' href="{% static 'wp-includes/css/dist/block-library/style.min.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='hfe-style-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor-1.1.2.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-blocks-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-blocks/assets/css/jet-blocks-1.1.9.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-icons-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min-5.3.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-animations-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/animations/animations.min-2.6.5.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/css/frontend.min-2.6.5.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-icons-bc-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-pro/assets/lib/eicons-bc/css/elementor-icons.min-1.0.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-pro-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-pro/assets/css/frontend.min-2.5.14.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='uael-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min-1.14.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-icons-css' href="{% static 'wp-content/plugins/vapp-theme-support/assets/css/nucleo-font.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-editor-styles-css'
+          href="{% static 'wp-content/plugins/vapp-theme-support/assets/css/editor-styles.css' %}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-engine-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-engine/assets/css/frontend-1.4.6.1.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-parallax-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-parallax/assets/css/jet-parallax-frontend-1.0.6.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-tabs-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-tabs/assets/css/jet-tabs-frontend-2.0.2.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-tricks-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-tricks/assets/css/jet-tricks-frontend-1.2.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='namogo-icons-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/nicons/css/nicons-2.1.4.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-extras-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/css/frontend.min-2.1.4.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-post-839-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/uploads/elementor/css/post-839-1565808532.css' %}" type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='vapp-google-fonts-css'
+          href="{% static '../fonts.googleapis.com/cssdb10.css?family=Montserrat%3A100%2C100i%2C200%2C200i%2C300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i%2C800%2C800i%2C900%2C900i%26subset%3Dlatin%2Clatin-ext' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-switcher.min-css' href="{% static 'wp-content/themes/vapp/assets/css/switcher.min.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-theme-colors-css' href="{% static 'wp-content/themes/vapp/assets/css/theme-colors.min.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='SFProDisplay-css' href="{% static 'wp-content/themes/vapp/assets/fonts/SFProDisplay.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-css-grids-css' href="{% static 'wp-content/themes/vapp/assets/css/css-grids.min.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-app-css' href="{% static 'wp-content/themes/vapp/assets/css/app.min.css' %}" type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='vapp-woo-css' href="{% static 'wp-content/themes/vapp/assets/css/vapp-woo.css' %}' %}" type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='vapp-responsive-css' href="{% static 'wp-content/themes/vapp/assets/css/responsive.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='main-css' href="{% static 'wp-content/themes/vapp/assets/css/main.css' %}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='vapp-theme-custom-style-css'
+          href="{% static 'wp-content/themes/vapp/assets/css/theme_options_style.css' %}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-elements-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-elements/assets/css/jet-elements-1.15.15.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-elements-skin-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-elements/assets/css/jet-elements-skin-1.15.15.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='font-awesome-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/font-awesome/css/font-awesome.min-4.7.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-menu-public-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/assets/public/css/public-1.5.14.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='cherry-handler-css-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/cherry-framework/modules/cherry-handler/assets/css/cherry-handler-styles.min-1.5.11.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-popup-frontend-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-popup/assets/css/jet-popup-frontend-1.2.6.1.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jet-reviews-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-reviews/assets/css/jet-reviews-1.2.2.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-menus-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/navmenu-addon-for-elementor/assets/css/frontend.min-1.1.6.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-icons-shared-0-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min-5.9.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-icons-fa-solid-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min-5.9.0.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='elementor-icons-fa-regular-css'
+          href="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min-5.9.0.css' %}"
+          type='text/css' media='all'/>
+    <script type='text/javascript'>/* <![CDATA[ */
+    var uael_script = {
+        "post_loader": "https:\/\/PANDRAS.com.br\/wp-content\/plugins\/ultimate-elementor\/assets\/img\/post-loader.gif",
+        "url": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+        "search_str": "Search:",
+        "table_length_string": "Show _MENU_ Entries",
+        "uael_particles_url": "https:\/\/PANDRAS.com.br\/wp-content\/plugins\/ultimate-elementor\/assets\/min-js\/uael-particles.min.js",
+        "particles_url": "https:\/\/PANDRAS.com.br\/wp-content\/plugins\/ultimate-elementor\/assets\/lib\/particles\/particles.min.js"
+    };
+    var uael = {"ajax_url": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php"}; /* ]]> */</script>
+    <script type='text/javascript' src="{% static 'wp-content/cache/busting/1/wp-includes/js/jquery/jquery-1.12.4-wp.js' %}"></script>
+    <script type='text/javascript'
+            src="{% static 'wp-content/cache/busting/1/wp-includes/js/jquery/jquery-migrate.min-1.4.1.js' %}"></script>
+    <script type='text/javascript'>window.scope_array = [];
+    window.backend = 0;
+    jQuery(window).on("elementor/frontend/init", function () {
+        elementorFrontend.hooks.addAction("frontend/element_ready/global", function ($scope, $) {
+            if ("undefined" == typeof $scope) {
+                return;
+            }
+            if ($scope.hasClass("uael-particle-yes")) {
+                window.scope_array.push($scope);
+            }
+            if (elementorFrontend.isEditMode()) {
+                var uael_url = uael_script.uael_particles_url;
+                jQuery.cachedScript = function (url, options) {
+                    // Allow user to set any option except for dataType, cache, and url.
+                    options = jQuery.extend(options || {}, {
+                        dataType: "script",
+                        cache: true,
+                        url: url
+                    });
+                    // Return the jqXHR object so we can chain callbacks.
+                    return jQuery.ajax(options);
+                };
+                jQuery.cachedScript(uael_url);
+                window.backend = 1;
+            }
+        });
+    });
+    jQuery(document).ready(function () {
+        if (jQuery.find(".uael-particle-yes").length < 1) {
+            return;
+        }
+        var uael_url = uael_script.uael_particles_url;
+        jQuery.cachedScript = function (url, options) {
+            // Allow user to set any option except for dataType, cache, and url.
+            options = jQuery.extend(options || {}, {
+                dataType: "script",
+                cache: true,
+                url: url
+            });
+            // Return the jqXHR object so we can chain callbacks.
+            return jQuery.ajax(options);
+        };
+        jQuery.cachedScript(uael_url);
+    });</script>
+    <link rel='https://api.w.org/' href='wp-json/index.html'/>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="{% static 'xmlrpc0db0.php?rsd' %}"/>
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% static 'wp-includes/wlwmanifest.xml' %}"/>
+    <meta name="generator" content="WordPress 5.2.2"/>
+    <link rel='shortlink' href="{% url 'home' %}"/>
+    <link rel="alternate" type="application/json+oembed"
+          href="{% static 'wp-json/oembed/1.0/embedf4f4.json?url=https%3A%2F%2FPANDRAS.com.br%2F' %}"/>
+    <link rel="alternate" type="text/xml+oembed"
+          href="{% static 'wp-json/oembed/1.0/embed5a7c?url=https%3A%2F%2FPANDRAS.com.br%2F&amp;format=xml' %}"/>
+    <style></style>
+    <script type="text/javascript">var _hsq = _hsq || [];
+    _hsq.push(["setContentType", "standard-page"]);</script>
+    <style type="text/css">.recentcomments a {
+        display: inline !important;
+        padding: 0 !important;
+        margin: 0 !important
+    }</style>
+    <style type="text/css" title="dynamic-css" class="options-output">.blog-breadcrumb {
+        background-color: #EFEFEE
+    }
+
+    .woocommerce-page .blog-breadcrumb {
+        background-color: #EFEFEE
+    }</style>
+    <noscript>
+        <style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src] {
+            display: none !important
+        }</style>
+    </noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+</head>
+<body class="home page-template page-template-elementor_canvas page page-id-839 has-navmenu has-megamenu ehf-template-vapp ehf-stylesheet-vapp-child use-sticky-nav has-custom-header white elementor-default elementor-template-canvas elementor-page elementor-page-839">
+<div class="main-wrapper">
+    <div data-elementor-type="post" data-elementor-id="839" class="elementor elementor-839"
+         data-elementor-settings="[]">
+        <div class="elementor-inner">
+            <div class="elementor-section-wrap">
+                <header class="elementor-element elementor-element-b5c26bb navigation site-nav navigation__transparent navigation__landscape yes elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+                        data-id="b5c26bb" data-element_type="section"
+                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="elementor-container elementor-column-gap-default">
+                        <div class="elementor-row">
+                            <div class="elementor-element elementor-element-e355f13 elementor-hidden-tablet elementor-hidden-phone elementor-column elementor-col-33 elementor-top-column"
+                                 data-id="e355f13" data-element_type="column">
+                                <div class="elementor-column-wrap  elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                        <div class="elementor-element elementor-element-7480142 elementor-hidden-phone elementor-widget elementor-widget-vapp-logo"
+                                             data-id="7480142" data-element_type="widget"
+                                             data-widget_type="vapp-logo.default">
+                                            <div class="elementor-widget-container"><a href="{% url 'home' %}"
+                                                                                       class="navigation__brand"> <img
+                                                    src="{% static 'wp-content/uploads/2019/07/pandras_gradient.png' %}"
+                                                    alt="pandras" class="navigation-main__logo"/> <img
+                                                    src="{% static 'wp-content/uploads/2019/07/pandras_black.png' %}"
+                                                    alt="pandras" class="sticky-nav__logo"/> </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-2cbb89e elementor-hidden-tablet elementor-hidden-phone elementor-column elementor-col-33 elementor-top-column"
+                                 data-id="2cbb89e" data-element_type="column">
+                                <div class="elementor-column-wrap  elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                        <div class="elementor-element elementor-element-5cc42a2 elementor-hidden-tablet elementor-hidden-phone elementor-widget elementor-widget-vapp-nav-menu"
+                                             data-id="5cc42a2" data-element_type="widget"
+                                             data-widget_type="vapp-nav-menu.default">
+                                            <div class="elementor-widget-container">
+                                                <button class="navigation__toggler"></button>
+                                                <nav class="navigation-wrapper">
+                                                    <button class="offcanvas__close">✕</button>
+                                                    <div class="menu-menu-puzzle-lab-container">
+                                                        <ul id="menu-menu-puzzle-lab" class="navigation-menu">
+                                                            <li id="menu-item-2638"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2638">
+                                                                <a href="{% url 'home' %}#home" aria-current="page">Home</a>
+                                                            </li>
+                                                            <li id="menu-item-2639"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2639">
+                                                                <a href="{% url 'home' %}#servicos" aria-current="page">Serviços</a>
+                                                            </li>
+                                                            <li id="menu-item-2641"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2641">
+                                                                <a href="{% url 'home' %}#trabalhos" aria-current="page">Portifólio</a>
+                                                            </li>
+                                                            <li id="menu-item-2642"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2642">
+                                                                <a href="{% url 'home' %}#faq" aria-current="page">Dúvidas</a>
+                                                            </li>
+                                                            <li id="menu-item-2643"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2643">
+                                                                <a href="{% url 'home' %}#contato"
+                                                                   aria-current="page">Contato</a></li>
+                                                            <li id="menu-item-2644"
+                                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-2643">
+                                                                <a href="{% url 'privacidade' %}"
+                                                                   aria-current="page">Política de Privacidade</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </header>
+                <section
+                        class="elementor-element elementor-element-13bbacb elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+                        data-id="13bbacb" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-default">
+                        <div class="elementor-row">
+                            <div class="overlay"></div>
+<!--                            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">-->
+<!--                                <source src="mp4/bg.mp4" type="video/mp4">-->
+<!--                            </video>-->
+
+                            <div class="masthead" style="width: 100%;padding-bottom: 50px;">
+<!--                                <div class="masthead-bg"></div>-->
+                                <div class="container h-100">
+                                    <div class="row h-100" >
+                                        <div id="parentOverlay" class="col-12 my-auto">
+                                            <div  id="overlay" class="masthead-content text-white py-5 py-md-0">
+                                                <div id="main_content" >
+                                                    <h2 >Formulário de Contato</h2>
+                                                    <div>
+                                                        <label style="margin-top: 10px;" for="inputName">Nome:</label>
+                                                        <input type="text" id="inputName" class="form-control"
+                                                               style="height:40px;margin-bottom: 5px;" placeholder="Digite seu Nome..."
+                                                               aria-label="Digite seu Nome..." aria-describedby="basic-addon">
+                                                        <label style="margin-top: 10px;" for="inputEmail">E-mail:</label>
+                                                        <input id="inputEmail" style="height:40px;margin-bottom: 5px;" type="email" class="form-control" placeholder="Digite seu E-mail..."
+                                                               aria-label="Digite seu E-mail..." aria-describedby="basic-addon">
+                                                        <label style="margin-top: 10px;" for="inputPhone">Telefone:</label>
+                                                        <input id="inputPhone" style="height:40px;margin-bottom: 5px;" type="tel" class="form-control" placeholder="Digite seu Telefone com DDD..."
+                                                               aria-label="Digite seu Telefone com DDD..." aria-describedby="basic-addon">
+                                                        <table style="width: 100%;border:none;">
+                                                            <tr style="border:none;padding: 0;">
+                                                                <th style="border:none;padding: 0;">
+                                                                    <label style="margin-top: 10px;" for="inputCity">Cidade:</label>
+                                                                </th>
+                                                                <th style="border:none;padding: 0 0 0 10px;">
+                                                                    <label style="margin-top: 10px;" for="inputState">Estado:</label>
+                                                                </th>
+                                                            </tr>
+                                                            <tr style="border:none;padding: 0">
+                                                                <th style="border:none;padding: 0;">
+                                                                    <input id="inputCity" style="height:40px;margin-bottom: 5px;" type="text" class="form-control" placeholder="Digite sua Cidade..."
+                                                                           aria-label="Digite sua Cidade..." aria-describedby="basic-addon">
+                                                                </th>
+                                                                <th style="border:none;padding: 0 0 0 10px;">
+                                                                    <input id="inputState" style="height:40px;margin-bottom: 5px;" type="text" class="form-control" placeholder="Digite seu Estado..."
+                                                                           aria-label="Digite seu Estado..." aria-describedby="basic-addon">
+                                                                </th>
+                                                            </tr>
+
+
+                                                        </table>
+                                                        <label style="margin-top: 10px;" for="inputDescription">Descrição:</label>
+                                                        <textarea id="inputDescription"
+                                                                  style="width:100%;resize: vertical;min-height:60px;margin-bottom: 5px;text-align: justify;vertical-align: middle;"
+                                                                  type="text" class="form-control"
+                                                                  placeholder="Descreva brevemente qual solução deseja implementar..."
+                                                                  aria-label="Descreva brevemente qual solução deseja implementar..."
+                                                                  aria-describedby="basic-addon"></textarea>
+                                                        <label style="margin-top: 10px;" for="inputMonths">Prazo em meses:</label>
+                                                        <input id="inputMonths" type="number" class="form-control" min="1"
+                                                               style="height:40px;margin-bottom: 5px;" placeholder="Prazo em meses..."
+                                                               aria-label="Prazo em meses..." aria-describedby="basic-addon">
+<!--                                                        <label for="inputEmail">E-mail:</label>-->
+                                                    </div>
+                                                    <div class="input-group input-group-newsletter">
+
+<!--                                                        <input id="asd" type="email" class="form-control" placeholder="Digite seu E-mail..."-->
+<!--                                                               aria-label="Digite seu E-mail..." aria-describedby="basic-addon">-->
+                                                        <div class="input-group-append" style="width:100% !important;">
+                                                            <button id="btn_send" class="btn btn-secondary" onkeyup="changeStatus()"
+                                                                    style="margin-top:10px;width:100% !important;background-color: #009ac4; border-color: #007bff" type="button"
+                                                                    onclick="sendMessage()">Enviar!
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="social-icons">
+                                <ul class="list-unstyled text-center mb-0">
+                                    <li class="list-unstyled-item">
+                                        <a href="https://twitter.com/pandrascia">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled-item">
+                                        <a href="https://www.facebook.com/pandrascia">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled-item">
+                                        <a href="https://www.instagram.com/pandrascia">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript'>/* <![CDATA[ */
+var wp_load_style = ["jet-menu-hfe.css", "wp-block-library.html", "hfe-style.html", "jet-blocks.html", "elementor-icons.html", "elementor-animations.html", "elementor-frontend.html", "elementor-pro.html", "uael-frontend.html", "vapp-icons.html", "vapp-editor-styles.html", "jet-engine-frontend.html", "jet-parallax-frontend.html", "jet-tabs-frontend.html", "jet-tricks-frontend.html", "namogo-icons.html", "elementor-extras-frontend.html", "elementor-post-839.html", "vapp-google-fonts.html", "vapp-switcher.min.html", "vapp-theme-colors.html", "SFProDisplay.html", "vapp-css-grids.html", "vapp-app.html", "vapp-woo.html", "vapp-responsive.html", "main.html", "vapp-theme-custom-style.html", "jet-elements.html", "jet-elements-skin.html", "jet-menu-public.html", "cherry-handler-css.html", "jet-popup-frontend.html", "jet-reviews.html", "elementor-menus.html", "elementor-icons-fa-solid.html", "elementor-icons-fa-regular.css"];
+var wp_load_script = ["cherry-js-core.js", "leadin-scriptloader-js.html", "bootstrap.html", "db-nav.html", "html5lightbox.html", "picturefill.html", "popper.html", "scrollreveal.html", "slick.html", "themes.html", "sticky.html", "svg-handler.html", "vapp-app-js.html", "jet-menu-public-2.html", "cherry-handler-js.js"];
+var cherry_ajax = "cce0a6b6b8";
+var ui_init_object = {"auto_init": "false", "targets": []}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/cherry-framework/modules/cherry-js-core/assets/js/min/cherry-js-core.min-1.5.11.js' %}"></script>
+<script type='text/javascript'>function CherryCSSCollector() {
+    "use strict";
+    var t, e = window.CherryCollectedCSS;
+    void 0 !== e && (t = document.createElement("style"), t.setAttribute("title", e.title), t.setAttribute("type", e.type), t.textContent = e.css, document.head.appendChild(t))
+}
+
+CherryCSSCollector();</script>
+<script type='text/javascript'>/* <![CDATA[ */
+var leadin_wordpress = {"userRole": "visitor", "pageType": "home", "leadinPluginVersion": "7.6.0"}; /* ]]> */</script>
+<script type='text/javascript' async defer
+        src="{% static '../js.hs-scripts.com/6007370f3e6.js?integration=WordPress&amp;ver=7.6.0' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/bootstrap.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/db-nav.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/html5lightbox.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/picturefill.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/popper.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/scrollreveal.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/slick.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/themes.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/sticky.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/svg-handler.js' %}"></script>
+<script type='text/javascript' src="{% static 'wp-content/themes/vapp/assets/js/app.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/assets/public/js/jet-menu-plugin-1.5.14.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jetMenuPublicSettings = {
+    "menuSettings": {
+        "jetMenuRollUp": "false",
+        "jetMenuMouseleaveDelay": 500,
+        "jetMenuMegaWidthType": "container",
+        "jetMenuMegaWidthSelector": "",
+        "jetMenuMegaOpenSubType": "hover",
+        "jetMenuMobileBreakpoint": 768
+    }
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/assets/public/js/jet-menu-public-script-1.5.14.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jet_menu_save_options_ajax = {
+    "action": "jet_menu_save_options_ajax",
+    "nonce": "4c1b056753",
+    "type": "POST",
+    "data_type": "json",
+    "is_public": "false",
+    "sys_messages": {
+        "invalid_base_data": "Unable to process the request without nonce or server error",
+        "no_right": "No right for this action",
+        "invalid_nonce": "Stop CHEATING!!!",
+        "access_is_allowed": "",
+        "wait_processing": "Please wait, processing the previous request"
+    }
+};
+var jet_menu_restore_options_ajax = {
+    "action": "jet_menu_restore_options_ajax",
+    "nonce": "618596496f",
+    "type": "POST",
+    "data_type": "json",
+    "is_public": "false",
+    "sys_messages": {
+        "invalid_base_data": "Unable to process the request without nonce or server error",
+        "no_right": "No right for this action",
+        "invalid_nonce": "Stop CHEATING!!!",
+        "access_is_allowed": "",
+        "wait_processing": "Please wait, processing the previous request"
+    }
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/cherry-framework/modules/cherry-handler/assets/js/min/cherry-handler.min-1.5.11.js' %}"></script>
+<script type='text/javascript' src='wp-includes/js/wp-embed.min.js'></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/video-player/video-player.min-1.0.0.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/iphone-inline-video/iphone-inline-video.min-2.2.2.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/jquery-appear/jquery.appear.min-0.3.6.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/js/frontend-modules.min-2.6.5.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min-2.5.14.js' %}"></script>
+<script type='text/javascript'>var ElementorProFrontendConfig = {
+    "ajaxurl": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+    "nonce": "e905754293",
+    "shareButtonsNetworks": {
+        "facebook": {"title": "Facebook", "has_counter": true},
+        "twitter": {"title": "Twitter"},
+        "google": {"title": "Google+", "has_counter": true},
+        "linkedin": {"title": "LinkedIn", "has_counter": true},
+        "pinterest": {"title": "Pinterest", "has_counter": true},
+        "reddit": {"title": "Reddit", "has_counter": true},
+        "vk": {"title": "VK", "has_counter": true},
+        "odnoklassniki": {"title": "OK", "has_counter": true},
+        "tumblr": {"title": "Tumblr"},
+        "delicious": {"title": "Delicious"},
+        "digg": {"title": "Digg"},
+        "skype": {"title": "Skype"},
+        "stumbleupon": {"title": "StumbleUpon", "has_counter": true},
+        "telegram": {"title": "Telegram"},
+        "pocket": {"title": "Pocket", "has_counter": true},
+        "xing": {"title": "XING", "has_counter": true},
+        "whatsapp": {"title": "WhatsApp"},
+        "email": {"title": "Email"},
+        "print": {"title": "Print"}
+    },
+    "facebook_sdk": {"lang": "pt_BR", "app_id": ""}
+};</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-pro/assets/js/frontend.min-2.5.14.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-includes/js/jquery/ui/position.min-1.11.4.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/dialog/dialog.min-4.7.1.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min-4.0.2.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/lib/swiper/swiper.min-4.4.6.js' %}"></script>
+<script type='text/javascript'>var elementorFrontendConfig = {
+    "environmentMode": {"edit": false, "wpPreview": false},
+    "is_rtl": "",
+    "breakpoints": {"xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600},
+    "version": "2.6.5",
+    "urls": {"assets": "https:\/\/PANDRAS.com.br\/wp-content\/plugins\/elementor\/assets\/"},
+    "settings": {
+        "page": [],
+        "general": {"elementor_global_image_lightbox": "yes", "elementor_enable_lightbox_in_editor": "yes"},
+        "extras": {
+            "ee_tooltips_position": "bottom",
+            "ee_tooltips_delay_in": {"unit": "px", "size": 0, "sizes": []},
+            "ee_tooltips_delay_out": {"unit": "px", "size": 0, "sizes": []},
+            "ee_tooltips_duration": {"unit": "px", "size": 0.2, "sizes": []}
+        }
+    },
+    "post": {"id": 839, "title": "PANDRAS - Desenvolvimento de aplicativos mobile", "excerpt": ""}
+};</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor/assets/js/frontend.min-2.6.5.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-blocks/assets/js/jet-blocks.min-1.1.9.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jetElements = {
+    "ajaxUrl": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+    "messages": {"invalidMail": "Please specify a valid e-mail"}
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-elements/assets/js/jet-elements.min-1.15.15.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-menu/assets/public/js/jet-menu-widgets-scripts-1.5.14.js' %}"></script>
+<script type='text/javascript' src="{% static '../cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/easing/EasePack.min.js' %}"></script>
+<script type='text/javascript' src="{% static '../cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jetParallax = {
+    "jetParallaxPluginSections": {
+        "b5c26bb": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "40057a9",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "13bbacb": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "c7ac29c",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "675cf02": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "bd956e5",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "81402ab": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "dba07f1",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "70b7835": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "7f7f1f6",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "42a5f23": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "6fc1443",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "bcc4867": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "758a725",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "fdf100b": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "b9d51e2",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "2d8f230": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "8021ec9",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "7aed34a": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "081630a",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "b25e95b": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "b949906",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "7b783c3": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "18339d5",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "dc027e3": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "7e21a1b",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "0b6fe16": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "7625148",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "6a2b0c7": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "15365e5",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "e5bef8d": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "85b7ddc",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "5d0b123": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "649321e",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "8a60f74": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "2c3b8f9",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "ee04576": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "992e59a",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "fe16c91": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "8f03327",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "76dd8593": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "bdac135",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "b5a8e65": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "fb45e19",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "39d1647": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "7bd1647",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "7693de5": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "447d432",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "8638b66": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "a1a86a4",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "64b186a": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "77aa7f5",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "60fefb00": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "29ba2b7",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }],
+        "faf6068": [{
+            "jet_parallax_plugin_layout_image": {"url": "", "id": ""},
+            "_id": "513dde2",
+            "jet_parallax_plugin_layout_image_tablet": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_image_mobile": {"url": "", "id": ""},
+            "jet_parallax_plugin_layout_speed": {"unit": "%", "size": 50, "sizes": []},
+            "jet_parallax_plugin_layout_type": "scroll",
+            "jet_parallax_plugin_layout_z_index": 1,
+            "jet_parallax_plugin_layout_bg_x": 50,
+            "jet_parallax_plugin_layout_bg_y": 50,
+            "jet_parallax_plugin_layout_bg_size": "auto",
+            "jet_parallax_plugin_layout_animation_prop": "transform"
+        }]
+    }
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-parallax/assets/js/jet-parallax-frontend-1.0.6.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-elements/assets/js/lib/anime-js/anime.min-2.2.0.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jetPopupData = {
+    "elements_data": {"sections": [], "columns": [], "widgets": []},
+    "version": "1.2.6.1",
+    "ajax_url": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php"
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-popup/assets/js/jet-popup-frontend.min-1.2.6.1.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var jetReviewData = {
+    "version": "1.2.2",
+    "ajax_url": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+    "current_url": "https:\/\/PANDRAS.com.br"
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-reviews/assets/js/jet-reviews-frontend-1.2.2.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var JetTabsSettings = {
+    "ajaxurl": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+    "isMobile": "false",
+    "templateApiUrl": "https:\/\/PANDRAS.com.br\/wp-json\/jet-tabs-api\/v1\/elementor-template",
+    "devMode": "false"
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-tabs/assets/js/jet-tabs-frontend.min-2.0.2.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var JetTricksSettings = {
+    "elements_data": {
+        "sections": {
+            "b5c26bb": {"view_more": false, "particles": "false", "particles_json": ""},
+            "13bbacb": {"view_more": false, "particles": "false", "particles_json": ""},
+            "675cf02": {"view_more": false, "particles": "false", "particles_json": ""},
+            "81402ab": {"view_more": false, "particles": "false", "particles_json": ""},
+            "70b7835": {"view_more": false, "particles": "false", "particles_json": ""},
+            "42a5f23": {"view_more": false, "particles": "false", "particles_json": ""},
+            "bcc4867": {"view_more": false, "particles": "false", "particles_json": ""},
+            "fdf100b": {"view_more": false, "particles": "false", "particles_json": ""},
+            "2d8f230": {"view_more": false, "particles": "false", "particles_json": ""},
+            "7aed34a": {"view_more": false, "particles": "false", "particles_json": ""},
+            "b25e95b": {"view_more": false, "particles": "false", "particles_json": ""},
+            "7b783c3": {"view_more": false, "particles": "false", "particles_json": ""},
+            "dc027e3": {"view_more": false, "particles": "false", "particles_json": ""},
+            "0b6fe16": {"view_more": false, "particles": "false", "particles_json": ""},
+            "6a2b0c7": {"view_more": false, "particles": "false", "particles_json": ""},
+            "e5bef8d": {"view_more": false, "particles": "false", "particles_json": ""},
+            "5d0b123": {"view_more": false, "particles": "false", "particles_json": ""},
+            "8a60f74": {"view_more": false, "particles": "false", "particles_json": ""},
+            "ee04576": {"view_more": false, "particles": "false", "particles_json": ""},
+            "fe16c91": {"view_more": false, "particles": "false", "particles_json": ""},
+            "76dd8593": {"view_more": false, "particles": "false", "particles_json": ""},
+            "b5a8e65": {"view_more": false, "particles": "false", "particles_json": ""},
+            "39d1647": {"view_more": false, "particles": "false", "particles_json": ""},
+            "7693de5": {"view_more": false, "particles": "false", "particles_json": ""},
+            "8638b66": {"view_more": false, "particles": "false", "particles_json": ""},
+            "64b186a": {"view_more": false, "particles": "false", "particles_json": ""},
+            "60fefb00": {"view_more": false, "particles": "false", "particles_json": ""},
+            "faf6068": {"view_more": false, "particles": "false", "particles_json": ""}
+        },
+        "columns": [],
+        "widgets": {
+            "7480142": [],
+            "5cc42a2": [],
+            "828d1c0": [],
+            "5d03252": [],
+            "f710634": [],
+            "5756944": [],
+            "e647f30": [],
+            "90c7cb4": [],
+            "0672a60": [],
+            "2dd2567": [],
+            "7513f6b": [],
+            "c580107": [],
+            "1e21869": [],
+            "005f2bf": [],
+            "9ed0d85": [],
+            "95c4561": [],
+            "c92c9ef": [],
+            "c428a70": [],
+            "4b9bc82": [],
+            "9c63c28": [],
+            "543960fd": [],
+            "3111f580": [],
+            "14a79fcd": [],
+            "3722e64": [],
+            "d5a1dfa": [],
+            "7e2c223": [],
+            "53783b8": [],
+            "f75862f": [],
+            "e61f2cd": [],
+            "714dfec": [],
+            "10baa51": [],
+            "e97e1ad": [],
+            "c2f85a4": [],
+            "a7864a8": [],
+            "c762be8": [],
+            "5029cb7": [],
+            "5c4eb4c": [],
+            "c407dd9": [],
+            "71615a9": [],
+            "aff21e1": [],
+            "70ef93e": [],
+            "73548e1": [],
+            "95612d8": [],
+            "5044aae": [],
+            "97b2511": [],
+            "222b081": [],
+            "81dd4b5": [],
+            "2a9654d": [],
+            "4f3c336": [],
+            "14a1eac": [],
+            "81e0677": [],
+            "4985844f": [],
+            "2dd58950": [],
+            "9878d1d": [],
+            "9aa9c74": [],
+            "2d7db593": [],
+            "23024264": [],
+            "d835c92": [],
+            "473a98a": [],
+            "9780b6a": [],
+            "27119a0": [],
+            "5ed35ae": [],
+            "1a679f4d": [],
+            "13dd305": [],
+            "af5a0b4": [],
+            "fe3155f": []
+        }
+    }
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-tricks/assets/js/jet-tricks-frontend-1.2.0.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/navmenu-addon-for-elementor/assets/js/modernizr.custom-1.1.6.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var ElementorMenusFrontendConfig = {
+    "ajaxurl": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php",
+    "nonce": "62b52c57eb"
+};
+var elementorScreenReaderText = {"expand": "expand child menu", "collapse": "collapse child menu"};
+var elementorSecondaryScreenReaderText = {
+    "expand": "expand child menu",
+    "collapse": "collapse child menu"
+}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/navmenu-addon-for-elementor/assets/js/frontend.min-1.1.6.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var JetEngineSettings = {"ajaxurl": "https:\/\/PANDRAS.com.br\/wp-admin\/admin-ajax.php"}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/jet-engine/assets/js/frontend-1.4.6.1.js' %}"></script>
+<script type='text/javascript' src="{% static '../cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js' %}"></script>
+<script type='text/javascript'>/* <![CDATA[ */
+var elementorExtrasFrontendConfig = {"urls": {"assets": "https:\/\/PANDRAS.com.br\/wp-content\/plugins\/elementor-extras\/assets\/"}}; /* ]]> */</script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/js/frontend.min-2.1.4.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/parallax-gallery/parallax-gallery.min-1.0.0.js' %}"></script>
+<script type='text/javascript'
+        src="{% static 'wp-content/cache/busting/1/wp-content/plugins/elementor-extras/assets/lib/hotips/hotips.min-1.0.0.js' %}"></script>
+</body>
+<!-- Mirrored from PANDRAS.com.br/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 19:35:10 GMT -->
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1566384706 -->

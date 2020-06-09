@@ -1,0 +1,1524 @@
+.elementor-839 .elementor-element.elementor-element-b5c26bb {
+    overflow: hidden;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-b5c26bb.navigation.navigation__transparent {
+    background-color: #ffffff;
+}
+
+.elementor-839 .elementor-element.elementor-element-b5c26bb.navigation.navigation__transparent.navigation__landscape {
+    padding: 10px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-b5c26bb.navigation.navigation__transparent.sticky-nav {
+    background-color: #009ac4;
+}
+
+.elementor-839 .elementor-element.elementor-element-b5c26bb.navigation.navigation__transparent.navigation__landscape.sticky-nav {
+    padding: 10px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7480142 {
+    text-align: left;
+}
+
+body .navigation__brand {
+    padding: 0px 0px 0px 0px !important;
+    margin: -23px 0px 0px 0px !important;
+}
+
+.elementor-839 .elementor-element.elementor-element-7480142 > .elementor-widget-container {
+    margin: 12px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7480142 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5cc42a2 {
+    display: block;
+}
+
+.elementor-839 .navigation__landscape .navigation-menu > li > a {
+    color: #494949 !important;
+}
+
+.elementor-839 .navigation__landscape.sticky-nav .navigation-menu > li > a {
+    color: #ffffff;
+}
+
+.elementor-839 .elementor-element.elementor-element-5cc42a2 > .elementor-widget-container {
+    margin: -12px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-5cc42a2 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.navigation .vapp-btn-group {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-828d1c0 .vapp-btn-group {
+    display: block;
+}
+
+.navigation .vapp-btn-group .db-btn:nth-child(odd) {
+    color: #ffffff;
+    background: #fbb040;
+}
+
+.elementor-839 .elementor-element.elementor-element-828d1c0 > .elementor-widget-container {
+    margin: -14px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-828d1c0 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-b5c26bb > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-13184a7 > .elementor-column-wrap > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute) {
+    margin-bottom: 30px;
+}
+
+.elementor-839 .elementor-element.elementor-element-5d03252 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-f710634 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5756944 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-e647f30 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-90c7cb4 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-0672a60.elementor-widget-heading .elementor-heading-title {
+    color: #000000;
+}
+
+.elementor-839 .elementor-element.elementor-element-0672a60 .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.3em;
+}
+
+.elementor-839 .elementor-element.elementor-element-0672a60 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd2567 {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd2567 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-7513f6b a.elementor-button, .elementor-839 .elementor-element.elementor-element-7513f6b .elementor-button {
+    font-family: "Google", Sans-serif;
+    fill: #ffffff;
+    color: #ffffff;
+    background-color: #fbb040;
+    border-radius: 50px 50px 50px 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7513f6b a.elementor-button:hover, .elementor-839 .elementor-element.elementor-element-7513f6b .elementor-button:hover, .elementor-839 .elementor-element.elementor-element-7513f6b a.elementor-button:focus, .elementor-839 .elementor-element.elementor-element-7513f6b .elementor-button:focus {
+    color: #ff7052;
+    background-color: #ffffff;
+    border-color: #ff7052;
+}
+
+.elementor-839 .elementor-element.elementor-element-7513f6b .elementor-button {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ff7052;
+    box-shadow: 0px 10px 30px -8px rgba(0, 0, 0, 0.16);
+}
+
+.elementor-839 .elementor-element.elementor-element-7513f6b > .elementor-widget-container {
+    margin: 70px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7513f6b > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-c580107 {
+    text-align: right;
+}
+
+.elementor-839 .elementor-element.elementor-element-c580107 .elementor-image img {
+    width: 100%;
+}
+
+.elementor-839 .elementor-element.elementor-element-c580107 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-c580107.to--top,
+.ee-tooltip.ee-tooltip-c580107.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-c580107.to--left,
+.ee-tooltip.ee-tooltip-c580107.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-13bbacb {
+    padding: 50px 0px 50px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-1e21869 .elementor-image img {
+    width: 51%;
+}
+
+.elementor-839 .elementor-element.elementor-element-1e21869 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-1e21869.to--top,
+.ee-tooltip.ee-tooltip-1e21869.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-1e21869.to--left,
+.ee-tooltip.ee-tooltip-1e21869.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-005f2bf .elementor-image img {
+    width: 60%;
+}
+
+.elementor-839 .elementor-element.elementor-element-005f2bf > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-005f2bf.to--top,
+.ee-tooltip.ee-tooltip-005f2bf.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-005f2bf.to--left,
+.ee-tooltip.ee-tooltip-005f2bf.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-9ed0d85 .elementor-image img {
+    width: 60%;
+}
+
+.elementor-839 .elementor-element.elementor-element-9ed0d85 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-9ed0d85.to--top,
+.ee-tooltip.ee-tooltip-9ed0d85.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-9ed0d85.to--left,
+.ee-tooltip.ee-tooltip-9ed0d85.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-95c4561 .elementor-image img {
+    width: 60%;
+}
+
+.elementor-839 .elementor-element.elementor-element-95c4561 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-95c4561.to--top,
+.ee-tooltip.ee-tooltip-95c4561.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-95c4561.to--left,
+.ee-tooltip.ee-tooltip-95c4561.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-c92c9ef .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-c92c9ef > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-c428a70 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-4b9bc82 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-4b9bc82 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 .elementor-headline {
+    text-align: center;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 .elementor-headline-dynamic-wrapper path {
+    stroke: rgba(33, 58, 178, 0.84);
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 .elementor-headline-plain-text {
+    color: #494949;
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 .elementor-headline-dynamic-text {
+    color: #494949;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 > .elementor-widget-container {
+    margin: -51px 1px -58px 1px;
+}
+
+.elementor-839 .elementor-element.elementor-element-9c63c28 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-stacked .elementor-icon {
+    background-color: rgba(255, 255, 255, 0);
+    fill: #bfbfbf;
+    color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-framed .elementor-icon, .elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-default .elementor-icon {
+    fill: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-framed .elementor-icon {
+    background-color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-stacked .elementor-icon:hover {
+    background-color: rgba(0, 206, 27, 0);
+    fill: #00ce1b;
+    color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-framed .elementor-icon:hover, .elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-default .elementor-icon:hover {
+    fill: rgba(0, 206, 27, 0);
+    color: rgba(0, 206, 27, 0);
+    border-color: rgba(0, 206, 27, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-view-framed .elementor-icon:hover {
+    background-color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-position-right .elementor-icon-box-icon {
+    margin-left: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-position-left .elementor-icon-box-icon {
+    margin-right: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd.elementor-position-top .elementor-icon-box-icon {
+    margin-bottom: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon i {
+    transform: rotate(0deg);
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-title {
+    margin-bottom: 10px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-content .elementor-icon-box-title {
+    color: #000000;
+    font-size: 26px;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-content .elementor-icon-box-description {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd > .elementor-widget-container {
+    padding: 25px 25px 55px 25px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 55px 5px rgba(0, 0, 0, 0.06);
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd:hover .elementor-widget-container {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #00ce1b;
+    box-shadow: 0px 0px 55px 0px rgba(0, 0, 0, 0.19);
+}
+
+.elementor-839 .elementor-element.elementor-element-543960fd:hover > .elementor-widget-container {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-stacked .elementor-icon {
+    background-color: rgba(255, 255, 255, 0);
+    fill: #bfbfbf;
+    color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-framed .elementor-icon, .elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-default .elementor-icon {
+    fill: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-framed .elementor-icon {
+    background-color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-stacked .elementor-icon:hover {
+    background-color: rgba(0, 206, 27, 0);
+    fill: #00ce1b;
+    color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-framed .elementor-icon:hover, .elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-default .elementor-icon:hover {
+    fill: rgba(0, 206, 27, 0);
+    color: rgba(0, 206, 27, 0);
+    border-color: rgba(0, 206, 27, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-view-framed .elementor-icon:hover {
+    background-color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-position-right .elementor-icon-box-icon {
+    margin-left: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-position-left .elementor-icon-box-icon {
+    margin-right: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580.elementor-position-top .elementor-icon-box-icon {
+    margin-bottom: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon i {
+    transform: rotate(0deg);
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-title {
+    margin-bottom: 10px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-content .elementor-icon-box-title {
+    color: #000000;
+    font-size: 26px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-content .elementor-icon-box-description {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 > .elementor-widget-container {
+    padding: 25px 25px 55px 25px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 55px 5px rgba(0, 0, 0, 0.06);
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580:hover .elementor-widget-container {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #00ce1b;
+    box-shadow: 0px 0px 55px 0px rgba(0, 0, 0, 0.19);
+}
+
+.elementor-839 .elementor-element.elementor-element-3111f580:hover > .elementor-widget-container {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-stacked .elementor-icon {
+    background-color: rgba(255, 255, 255, 0);
+    fill: #bfbfbf;
+    color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-framed .elementor-icon, .elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-default .elementor-icon {
+    fill: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-framed .elementor-icon {
+    background-color: #bfbfbf;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-stacked .elementor-icon:hover {
+    background-color: rgba(0, 206, 27, 0);
+    fill: #00ce1b;
+    color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-framed .elementor-icon:hover, .elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-default .elementor-icon:hover {
+    fill: rgba(0, 206, 27, 0);
+    color: rgba(0, 206, 27, 0);
+    border-color: rgba(0, 206, 27, 0);
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-view-framed .elementor-icon:hover {
+    background-color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-position-right .elementor-icon-box-icon {
+    margin-left: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-position-left .elementor-icon-box-icon {
+    margin-right: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd.elementor-position-top .elementor-icon-box-icon {
+    margin-bottom: 15px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon {
+    font-size: 50px;
+    padding: 30px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon i {
+    transform: rotate(0deg);
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-title {
+    margin-bottom: 10px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-content .elementor-icon-box-title {
+    color: #000000;
+    font-size: 26px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-content .elementor-icon-box-description {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd > .elementor-widget-container {
+    padding: 25px 25px 55px 25px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 55px 5px rgba(0, 0, 0, 0.06);
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd:hover .elementor-widget-container {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #00ce1b;
+    box-shadow: 0px 0px 55px 0px rgba(0, 0, 0, 0.19);
+}
+
+.elementor-839 .elementor-element.elementor-element-14a79fcd:hover > .elementor-widget-container {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3722e64 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-3722e64 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-d5a1dfa > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-7e2c223 .elementor-spacer-inner {
+    height: 25px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7e2c223 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 .elementor-headline {
+    text-align: center;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 .elementor-headline-dynamic-wrapper path {
+    stroke: rgba(33, 58, 178, 0.84);
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 .elementor-headline-plain-text {
+    color: #494949;
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 .elementor-headline-dynamic-text {
+    color: #494949;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 > .elementor-widget-container {
+    margin: -51px 1px -58px 1px;
+}
+
+.elementor-839 .elementor-element.elementor-element-53783b8 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-7aed34a {
+    overflow: hidden;
+}
+
+.elementor-839 .elementor-element.elementor-element-f75862f > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-e61f2cd > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-714dfec > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-10baa51 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-e97e1ad .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-e97e1ad > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-c2f85a4 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-c2f85a4 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 .elementor-headline {
+    text-align: center;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 .elementor-headline-dynamic-wrapper path {
+    stroke: rgba(33, 58, 178, 0.84);
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 .elementor-headline-plain-text {
+    color: #494949;
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 .elementor-headline-dynamic-text {
+    color: #494949;
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 > .elementor-widget-container {
+    margin: -51px 1px -58px 1px;
+}
+
+.elementor-839 .elementor-element.elementor-element-a7864a8 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-c762be8 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-c762be8 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5029cb7 .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-5029cb7 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5c4eb4c {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-5c4eb4c > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group .db-btn {
+    padding: 0px 0px 0px 0px;
+    margin: 250px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group .db-btn:nth-child(odd) {
+    color: #000000;
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group .db-btn:nth-child(even) {
+    color: #1f5876;
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-c407dd9 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-device__media__screen--image {
+    align-items: flex-start;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-device__media__screen--image .ee-device__media__screen__inner {
+    top: auto;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress {
+    border-radius: 100px 100px 100px 100px;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress__inner {
+    border-radius: 0 100px 100px 0;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__bar {
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__control--progress__inner {
+    background-color: #000000;
+}
+
+.elementor-839 .elementor-element.elementor-element-71615a9 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-aff21e1 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-aff21e1 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-70ef93e .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-70ef93e > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-73548e1 {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-73548e1 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-95612d8 .vapp-btn-group {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-95612d8 .vapp-btn-group .db-btn:nth-child(odd) {
+    color: #000000;
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-95612d8 .vapp-btn-group .db-btn:nth-child(even) {
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-95612d8 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-device-wrapper {
+    max-width: 560px;
+    width: 100%;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-device {
+    width: 100%;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-device__orientation {
+    color: #7a7a7a;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress {
+    border-radius: 100px 100px 100px 100px;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress__inner {
+    border-radius: 0 100px 100px 0;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__bar {
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__control--progress__inner {
+    background-color: #000000;
+}
+
+.elementor-839 .elementor-element.elementor-element-5044aae > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-97b2511 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-97b2511 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-222b081 .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-222b081 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-81dd4b5 {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-81dd4b5 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group .db-btn {
+    padding: 0px 0px 0px 0px;
+    margin: 250px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group .db-btn:nth-child(odd) {
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group .db-btn:nth-child(even) {
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-2a9654d > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress {
+    border-radius: 100px 100px 100px 100px;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress__inner {
+    border-radius: 0 100px 100px 0;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__bar {
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__control--progress__inner {
+    background-color: #000000;
+}
+
+.elementor-839 .elementor-element.elementor-element-4f3c336 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-ee04576 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-ee04576 > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a1eac .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-14a1eac > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-81e0677 .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-81e0677 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-4985844f {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-4985844f > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd58950 .vapp-btn-group {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd58950 .vapp-btn-group .db-btn:nth-child(odd) {
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd58950 .vapp-btn-group .db-btn:nth-child(even) {
+    box-shadow: 0px 0px 0px 1px #e2e6ea;
+}
+
+.elementor-839 .elementor-element.elementor-element-2dd58950 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-device-wrapper {
+    max-width: 500px;
+    width: 100%;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-device {
+    width: 100%;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress {
+    border-radius: 100px 100px 100px 100px;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__bar .ee-player__control--progress__inner {
+    border-radius: 0 100px 100px 0;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__overlay .ee-player__control,
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__bar {
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__control--progress__inner {
+    background-color: #000000;
+}
+
+.elementor-839 .elementor-element.elementor-element-9878d1d > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-9aa9c74 .elementor-spacer-inner {
+    height: 50px;
+}
+
+.elementor-839 .elementor-element.elementor-element-9aa9c74 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-2d7db593 {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-2d7db593.elementor-widget-heading .elementor-heading-title {
+    color: #ffffff;
+}
+
+.elementor-839 .elementor-element.elementor-element-2d7db593 .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    font-style: normal;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.elementor-839 .elementor-element.elementor-element-2d7db593 > .elementor-widget-container {
+    margin: 0px 0px 0px 25px;
+}
+
+.elementor-839 .elementor-element.elementor-element-2d7db593 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-23024264 a.elementor-button, .elementor-839 .elementor-element.elementor-element-23024264 .elementor-button {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    fill: #ffffff;
+    color: #ffffff;
+    background-color: #fbb040;
+    border-radius: 0px 0px 0px 0px;
+    padding: 15px 45px 15px 45px;
+}
+
+.elementor-839 .elementor-element.elementor-element-23024264 a.elementor-button:hover, .elementor-839 .elementor-element.elementor-element-23024264 .elementor-button:hover, .elementor-839 .elementor-element.elementor-element-23024264 a.elementor-button:focus, .elementor-839 .elementor-element.elementor-element-23024264 .elementor-button:focus {
+    color: #000000;
+    background-color: #00ce1b;
+}
+
+.elementor-839 .elementor-element.elementor-element-23024264 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-39d1647:not(.elementor-motion-effects-element-type-background), .elementor-839 .elementor-element.elementor-element-39d1647 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: #009ac4;
+}
+
+.elementor-839 .elementor-element.elementor-element-39d1647 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 100px 0px 100px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-39d1647 > .elementor-background-overlay {
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-d835c92 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-473a98a .elementor-image {
+    display: block;
+}
+
+.elementor-839 .elementor-element.elementor-element-473a98a .elementor-image img {
+    position: absolute;
+    top: 130px;
+    right: -40%;
+    transition-duration: 0.3s;
+}
+
+.elementor-839 .elementor-element.elementor-element-473a98a > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-473a98a.to--top,
+.ee-tooltip.ee-tooltip-473a98a.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-473a98a.to--left,
+.ee-tooltip.ee-tooltip-473a98a.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-69a16b2 > .elementor-element-populated {
+    padding: 0px 0px 0px 5px;
+}
+
+.elementor-839 .elementor-element.elementor-element-9780b6a .section-title {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.elementor-839 .elementor-element.elementor-element-9780b6a .section-title h1, .elementor-839 .elementor-element.elementor-element-9780b6a .section-title h2, .elementor-839 .elementor-element.elementor-element-9780b6a .section-title h3, .elementor-839 .elementor-element.elementor-element-9780b6a .section-title h4, .elementor-839 .elementor-element.elementor-element-9780b6a .section-title h5, .elementor-839 .elementor-element.elementor-element-9780b6a .section-title h6 {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-9780b6a .section-title p {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-9780b6a > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-27119a0 .faq-two .faq-header h5 {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-27119a0 .faq-two .faq p {
+    font-family: "Google", Sans-serif;
+}
+
+.elementor-839 .elementor-element.elementor-element-27119a0 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-5ed35ae > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-64b186a {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-7693de5 {
+    padding: 89px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-1a679f4d {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-1a679f4d.elementor-widget-heading .elementor-heading-title {
+    color: #494949;
+}
+
+.elementor-839 .elementor-element.elementor-element-1a679f4d .elementor-heading-title {
+    font-family: "Google", Sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.elementor-839 .elementor-element.elementor-element-1a679f4d > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-60fefb00 {
+    padding: 100px 0px 100px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-13dd305 .elementor-icon-list-icon {
+    width: 14px;
+}
+
+.elementor-839 .elementor-element.elementor-element-13dd305 .elementor-icon-list-icon i {
+    font-size: 14px;
+}
+
+.elementor-839 .elementor-element.elementor-element-13dd305 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.elementor-839 .elementor-element.elementor-element-af5a0b4 {
+    text-align: left;
+}
+
+.elementor-839 .elementor-element.elementor-element-af5a0b4 .elementor-image img {
+    width: 36%;
+}
+
+.elementor-839 .elementor-element.elementor-element-af5a0b4 > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+.ee-tooltip.ee-tooltip-af5a0b4.to--top,
+.ee-tooltip.ee-tooltip-af5a0b4.to--bottom {
+    transform: translateX(0px);
+}
+
+.ee-tooltip.ee-tooltip-af5a0b4.to--left,
+.ee-tooltip.ee-tooltip-af5a0b4.to--right {
+    transform: translateY(0px);
+}
+
+.elementor-839 .elementor-element.elementor-element-fe3155f > .elementor-widget-container {
+    margin: 0px 0px 0px 0px;
+}
+
+.elementor-839 .elementor-element.elementor-element-fe3155f > .tippy-popper .tippy-tooltip .tippy-content {
+    text-align: center;
+}
+
+body.elementor-page-839 {
+    padding: -3px -3px -61px -3px;
+}
+
+@media (max-width: 1024px) {
+    .elementor-839 .elementor-element.elementor-element-13bbacb {
+        padding: 50px 20px 50px 20px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-content .elementor-icon-box-title {
+        font-size: 25px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-content .elementor-icon-box-description {
+        font-size: 14px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-content .elementor-icon-box-title {
+        font-size: 25px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-content .elementor-icon-box-description {
+        font-size: 14px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-content .elementor-icon-box-title {
+        font-size: 25px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-content .elementor-icon-box-description {
+        font-size: 14px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-95612d8 .vapp-btn-group {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2dd58950 .vapp-btn-group {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2d7db593 .elementor-heading-title {
+        line-height: 1.3em;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-39d1647 {
+        padding: 100px 25px 100px 25px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-473a98a {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-473a98a .elementor-image img {
+        max-width: 75%;
+        position: initial;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-69a16b2 > .elementor-element-populated {
+        margin: 45px 0px 0px 0px;
+        padding: 0px 0px 0px 40px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-7693de5 {
+        padding: 70px 0px 60px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-1a679f4d .elementor-heading-title {
+        font-size: 45px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-60fefb00 {
+        padding: 100px 25px 100px 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .elementor-839 .elementor-element.elementor-element-7480142 {
+        text-align: left;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-7480142 .navigation-main__logo {
+        width: 0px;
+        height: 0px;
+        min-height: 0px;
+    }
+
+    body .navigation__brand {
+        margin: 0px 0px 0px 0px !important;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-7480142 > .elementor-widget-container {
+        margin: 0px 0px 0px 00px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-7513f6b > .elementor-widget-container {
+        margin: 0px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-13bbacb {
+        padding: 30px 20px 30px 20px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-9c63c28 > .elementor-widget-container {
+        margin: -27px 0px 29px 0px;
+        padding: -166px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-543960fd .elementor-icon-box-icon {
+        margin-bottom: 15px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-3111f580 .elementor-icon-box-icon {
+        margin-bottom: 15px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-14a79fcd .elementor-icon-box-icon {
+        margin-bottom: 15px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-c407dd9 .vapp-btn-group .db-btn {
+        margin: 0px 10px 15px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-95612d8 .vapp-btn-group .db-btn {
+        margin: 0px 10px 15px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2a9654d .vapp-btn-group .db-btn {
+        margin: 0px 10px 15px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2dd58950 .vapp-btn-group .db-btn {
+        margin: 0px 10px 15px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2d7db593 {
+        text-align: center;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2d7db593 .elementor-heading-title {
+        font-size: 20px;
+        line-height: 1.3em;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-23024264 > .elementor-widget-container {
+        padding: 25px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-39d1647 {
+        padding: 50px 20px 50px 20px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-091b1b0 > .elementor-element-populated {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-473a98a .elementor-image img {
+        max-width: 100%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-69a16b2 > .elementor-element-populated {
+        padding: 0px 15px 0px 15px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-64b186a {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-7693de5 {
+        padding: 50px 0px 40px 0px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-1a679f4d .elementor-heading-title {
+        font-size: 45px;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-60fefb00 {
+        padding: 50px 20px 50px 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .elementor-839 .elementor-element.elementor-element-e355f13 {
+        width: 17.035%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-2cbb89e {
+        width: 60.866%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-ac0e08c {
+        width: 22.095%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-262eb99 {
+        width: 46.133%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-c304f64 {
+        width: 53.867%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-52292584 {
+        width: 39.687%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-345444e8 {
+        width: 60.313%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-733e0b33 {
+        width: 73%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-587a7b8a {
+        width: 27%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-69a16b2 {
+        width: 57.054%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-5b36bbe {
+        width: 42.946%;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .elementor-839 .elementor-element.elementor-element-733e0b33 {
+        width: 60%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-587a7b8a {
+        width: 40%;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-69a16b2 {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control:hover,
+    .elementor-839 .elementor-element.elementor-element-71615a9 .ee-video-player__controls .ee-player__controls__bar:hover {
+        opacity: 1;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__overlay .ee-player__control:hover,
+    .elementor-839 .elementor-element.elementor-element-5044aae .ee-video-player__controls .ee-player__controls__bar:hover {
+        opacity: 1;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__overlay .ee-player__control:hover,
+    .elementor-839 .elementor-element.elementor-element-4f3c336 .ee-video-player__controls .ee-player__controls__bar:hover {
+        opacity: 1;
+    }
+
+    .elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__overlay .ee-player__control:hover,
+    .elementor-839 .elementor-element.elementor-element-9878d1d .ee-video-player__controls .ee-player__controls__bar:hover {
+        opacity: 1;
+    }
+}
+
+/* Start Custom Fonts CSS */
+@font-face {
+    font-family: 'Google';
+    font-style: normal;
+    font-weight: normal;
+    src: url(../../../../../../../uploads/2019/07/Product-Sans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Google';
+    font-style: normal;
+    font-weight: bold;
+    src: url(../../../../../../../uploads/2019/07/Product-Sans-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Google';
+    font-style: italic;
+    font-weight: bold;
+    src: url(../../../../../../../uploads/2019/07/Product-Sans-Bold-Italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Google';
+    font-style: italic;
+    font-weight: normal;
+    src: url(../../../../../../../uploads/2019/07/Product-Sans-Italic.ttf) format('truetype');
+}
+
+/* End Custom Fonts CSS */
