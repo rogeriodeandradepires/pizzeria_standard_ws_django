@@ -1,15 +1,19 @@
 import ast
-from datetime import time
+from datetime import time, datetime
+from unittest.mock import Mock
 
 import MySQLdb
 from django.db import connections
 
 from django.core import serializers
+from django.forms import model_to_dict
 from django.shortcuts import render
 
 # Create your views here.
 # pages/views.py
 from django.http import HttpResponse, JsonResponse
+from django.utils import timezone
+from django.utils.timezone import make_aware
 from flask import Flask, jsonify, request, render_template
 import os
 import firebase_admin
@@ -23,7 +27,7 @@ import pysftp
 import sys
 import uuid
 import MySQLdb.cursors
-from standard_backend_app.apps import firebase_app
+# from standard_backend_app.apps import firebase_app
 
 # cred = credentials.Certificate("dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json")
 # cred = credentials.Certificate({
@@ -44,16 +48,16 @@ from standard_backend_app.apps import firebase_app
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
 # if not firebase_admin._apps:
 #     firebase_admin.initialize_app(cred, newDict, 'Django')
-from standard_backend_app.models import Categoria
+from standard_backend_app.models import Categoria, Produto, Tamanho, Valore
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "standard-pizzeria-firebase-adminsdk-51hcl-c8dadbf83f.json"
 
-client = storage.Client()
+# client = storage.Client()
 # # https://console.cloud.google.com/storage/browser/[bucket-id]/
-bucket = client.get_bucket('dom-marino-ws.appspot.com')
+# bucket = client.get_bucket('dom-marino-ws.appspot.com')
 db = firestore.client()
 # print(db.collection('todos').document('GetRkRdqhNTrdQ2wcvGE').get().to_dict())
-
 
 
 # cursor = connections['adminNeto'].cursor() # Replace 'cust' to other defined databases if necessary.
@@ -114,6 +118,7 @@ all_two_flavored_pizzas = []
 all_orders = []
 all_users = []
 
+
 def on_snapshot(doc_snapshot, changes, read_time):
     for doc in doc_snapshot:
         print(u'Received document snapshot: {}'.format(doc.id))
@@ -134,10 +139,132 @@ def on_categories_snapshot(doc_snapshot, changes, read_time):
         all_categories.append(category)
 
         if category not in all_categories_db:
+            category['image'] = category['image'].replace(
+                "https://storage.googleapis.com/dom-marino-ws.appspot.com/categories/",
+                "images/standard_pizzeria/categories/")
+            del category['icon']
             m = Categoria(**category)
             m.save(using='standard')
         # else:
         #     print('já tem na lista: ', category)
+
+
+def save_valore(tamanho_model, produto):
+    # valore_model, created = Valore.objects.using('standard').create(produto=produto, tamanho=tamanho_model)
+    valore_model = Valore()
+    valore_model._state.db = 'standard'
+    valore_model.tamanho = tamanho_model
+    valore_model.produto = produto
+    valore_model.save(using='standard')
+
+
+def save_tamanho_e_valore(size_id, size_id_dict, produto):
+    # print('save_tamanho_e_valor: %s ' % product['id'])
+
+    # print(product['id'])
+
+    tamanho_model = Tamanho()
+    tamanho_model._state.db = 'standard'
+    # tamanho_model, created = Tamanho.objects.using('standard').get_or_create(description=size_id.id.title(), price=size_id_dict['price'])
+    tamanho_model.description = size_id.id.title()
+    tamanho_model.price = size_id_dict['price']
+    tamanho_model.save(using='standard')
+
+    save_valore(tamanho_model, produto)
+
+
+def process_prices_and_images(images, prices, product, category_name):
+
+    for image in images:
+        import urllib.request as req
+        path = "images/standard_pizzeria/products/%s/image_name.png" % category_name
+        relativePath = "C:\/Users\/roger\Desktop\/flutter_projects\/django\/pizzeria_standard_ws\/media\/images\/standard_pizzeria\/products\/%s\/image_name.png" % category_name
+        req.urlretrieve(image.to_dict().get('url', ''), relativePath)
+        product.update({'image': path})
+
+    size_prices = {'prices': {}}
+    product.update(size_prices)
+    produto = save_product_to_db(product, category_name)
+
+    for size_id in prices:
+        size_id_dict = size_id.to_dict()
+        size_prices['prices'][size_id.id] = size_id_dict
+
+        try:
+
+            if size_id_dict['price'] is None:
+                size_id_dict['price'] = {'null': 'null'}
+
+            tamanhos_query_set_tuple = Tamanho.objects.get(description=size_id.id.title(), price=size_id_dict['price'])
+            tamanhos_query_set_tuple._state.db = 'standard'
+            save_valore(tamanhos_query_set_tuple, produto)
+
+        except Tamanho.DoesNotExist:
+            print('Exception Tamanho.DoesNotExist \n')
+            save_tamanho_e_valore(size_id, size_id_dict, produto)
+        except:
+            print('Exception 2 Tamanho \n')
+
+    product.update(size_prices)
+    return product
+
+
+def save_product_to_db(product, category_name):
+    category = Categoria.objects.get(name=category_name)
+    # category = [entry for entry in categories_query_set_tuple]
+
+    query_set_tuple = Produto.objects.values()
+    all_products_db = [entry for entry in query_set_tuple]
+
+    try:
+        del product['prices']
+    except:
+        print('Exception prices ao salvar produto em: %s \n' % category_name)
+
+    try:
+        del product['promotional_price']
+    except:
+        print('Exception promotional_price ao salvar produto em: %s \n' % category_name)
+
+    try:
+        del product['price_broto']
+    except:
+        print('Exception price_broto ao salvar produto em: %s \n' % category_name)
+
+    try:
+        del product['price_inteira']
+    except:
+        print('Exception price_inteira ao salvar produto em: %s \n' % category_name)
+
+    # del product['promotional_price']
+    product['category_id'] = category.id
+
+    # print('antes %s \n' % product['dateRegister'])
+
+    product['dateRegister'] = str(product['dateRegister'])
+
+    # print('depois %s \n' % product['dateRegister'])
+
+    try:
+        naive_datetime = datetime.strptime(product['dateRegister'], '%d-%m-%Y-%H:%M:%S')
+        register = make_aware(naive_datetime)
+    except:
+        # print('depois %s \n' % product['dateRegister'][:-6])
+        naive_datetime = datetime.strptime(product['dateRegister'][:-6], '%Y-%m-%d %H:%M:%S')
+        register = make_aware(naive_datetime)
+
+    # naive_datetime = datetime.strptime(product['dateRegister'], '%d-%m-%Y-%H:%M:%S')
+    # register = make_aware(naive_datetime)
+
+    product['dateRegister'] = register
+
+    # product.update({'category_id': category['id']})
+
+    # if product not in all_products_db:
+        # product['image'] = product['image'].replace("https://storage.googleapis.com/dom-marino-ws.appspot.com/products/", "images/standard_pizzeria/products/")
+    m = Produto(**product)
+    m.save(using='standard')
+    return m
 
 
 def on_nab_snapshot(doc_snapshot, changes, read_time):
@@ -167,17 +294,11 @@ def on_nab_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
+        product = process_prices_and_images(images, prices, product, 'non_alcoholic_beverages')
 
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
         all_non_alcoholic_beverages.append(product)
+
+        save_product_to_db(product, 'non_alcoholic_beverages')
 
 
 def on_ab_snapshot(doc_snapshot, changes, read_time):
@@ -206,18 +327,11 @@ def on_ab_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'alcoholic_beverages')
 
         all_alcoholic_beverages.append(product)
+
+        save_product_to_db(product, 'alcoholic_beverages')
 
 
 def on_beers_snapshot(doc_snapshot, changes, read_time):
@@ -246,18 +360,11 @@ def on_beers_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'beers')
 
         all_beers.append(product)
+
+        save_product_to_db(product, 'beers')
 
 
 def on_candy_pizzas_snapshot(doc_snapshot, changes, read_time):
@@ -286,18 +393,11 @@ def on_candy_pizzas_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'candy_pizzas')
 
         all_candy_pizzas.append(product)
+
+        save_product_to_db(product, 'candy_pizzas')
 
 
 def on_flapts_snapshot(doc_snapshot, changes, read_time):
@@ -326,18 +426,11 @@ def on_flapts_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'flapts')
 
         all_flapts.append(product)
+
+        save_product_to_db(product, 'flapts')
 
 
 def on_pizza_edges_snapshot(doc_snapshot, changes, read_time):
@@ -366,18 +459,11 @@ def on_pizza_edges_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'pizza_edges')
 
         all_pizza_edges.append(product)
+
+        save_product_to_db(product, 'pizza_edges')
 
 
 def on_traditional_pizzas_snapshot(doc_snapshot, changes, read_time):
@@ -406,19 +492,11 @@ def on_traditional_pizzas_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'traditional_pizzas')
 
         all_traditional_pizzas.append(product)
-        # print(product)
+
+        save_product_to_db(product, 'traditional_pizzas')
 
 
 def on_gourmet_pizzas_snapshot(doc_snapshot, changes, read_time):
@@ -447,18 +525,11 @@ def on_gourmet_pizzas_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'gourmet_pizzas')
 
         all_gourmet_pizzas.append(product)
+
+        save_product_to_db(product, 'gourmet_pizzas')
 
 
 def on_wines_snapshot(doc_snapshot, changes, read_time):
@@ -487,18 +558,11 @@ def on_wines_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'wines')
 
         all_wines.append(product)
+
+        save_product_to_db(product, 'wines')
 
 
 def on_promotions_snapshot(doc_snapshot, changes, read_time):
@@ -527,18 +591,11 @@ def on_promotions_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'promotions')
 
         all_promotions.append(product)
+
+        save_product_to_db(product, 'promotions')
 
 
 def on_two_flavored_pizzas_snapshot(doc_snapshot, changes, read_time):
@@ -567,18 +624,11 @@ def on_two_flavored_pizzas_snapshot(doc_snapshot, changes, read_time):
         else:
             product.update({'price_inteira': None})
 
-        for image in images:
-            product.update({'image': image.to_dict().get('url', '')})
-            # doc.collection('images').on_snapshot(on_nab_images_snapshot)
-
-        size_prices = {'prices': {}}
-
-        for size_id in prices:
-            size_prices['prices'][size_id.id] = size_id.to_dict()
-
-        product.update(size_prices)
+        product = process_prices_and_images(images, prices, product, 'two_flavored_pizzas')
 
         all_two_flavored_pizzas.append(product)
+
+        save_product_to_db(product, 'two_flavored_pizzas')
 
 
 def on_users_snapshot(doc_snapshot, changes, read_time):
@@ -592,12 +642,14 @@ def on_users_snapshot(doc_snapshot, changes, read_time):
         all_users.append(user)
 
 
-#Watch the document
+# Watch the document
 # cat_watch = categories_ref.on_snapshot(on_categories_snapshot)
 # nab_watch = non_alcoholic_beverages_ref.on_snapshot(on_nab_snapshot)
 # ab_watch = alcoholic_beverages_ref.on_snapshot(on_ab_snapshot)
 # beers_watch = beers_ref.on_snapshot(on_beers_snapshot)
 # candy_pizzas_watch = candy_pizzas_ref.on_snapshot(on_candy_pizzas_snapshot)
+#
+#
 # flapts_watch = flapts_ref.on_snapshot(on_flapts_snapshot)
 # pizza_edges_watch = pizza_edges_ref.on_snapshot(on_pizza_edges_snapshot)
 # traditional_pizzas_watch = traditional_pizzas_ref.on_snapshot(on_traditional_pizzas_snapshot)
@@ -666,13 +718,6 @@ def monitor_watches():
 
 # monitor_watches()
 
-def setImageUrl(url):
-    global imageurl
-    imageurl = url
-
-# def homePageView(request):
-#     return HttpResponse('Hello, World!')
-
 def list_categories(request):
     """
         read() : Fetches documents from Firestore collection as JSON
@@ -716,6 +761,7 @@ def list_categories(request):
             # return JsonResponse(response, safe=False)
     except Exception as e:
         return f"An Error Occured: {e}"
+
 
 def create_user(request):
     # user_id = users_ref.document().id
@@ -761,14 +807,14 @@ def create_user(request):
             if not sftp.isdir('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid)):
                 sftp.mkdir('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid))
 
-
             sftp.cwd('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{}'.format(uid))
 
             img_id = str(uuid.uuid1())
 
             print('imge id={}'.format(img_id))
 
-            f = sftp.open('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{0}/{1}.png'.format(uid, img_id), 'wb')
+            f = sftp.open('/var/www/powermemes.com/htdocs/pizzerias/dommarino/userimg/{0}/{1}.png'.format(uid, img_id),
+                          'wb')
             f.write(image)
 
             # sftp.put(image.file.name, '/var/www/powermemes.com/dommarino/{}.jpg'.format(uid))
@@ -776,8 +822,8 @@ def create_user(request):
         # print(products_id)
         imgUrl = "https://powermemes.com/pizzerias/dommarino/userimg/{0}/{1}.png".format(uid, img_id)
 
-    elif imgUrl=="":
-        imgUrl="https://powermemes.com/pizzerias/dommarino/userimg/avatar.png"
+    elif imgUrl == "":
+        imgUrl = "https://powermemes.com/pizzerias/dommarino/userimg/avatar.png"
 
     data = {
         u'uid': u'{}'.format(uid),
@@ -799,8 +845,8 @@ def create_user(request):
     # jsonify({"success": True}), 200
     # print(image)
 
-def makeorder(request):
 
+def makeorder(request):
     # dd/mm/YY
     # today = datetime.now()
     # # today = today.strftime("%d-%m-%Y")
@@ -809,9 +855,8 @@ def makeorder(request):
     request_json = json.loads(request.body)
 
     # print(json.loads(request.body)['date_time'])
-    today = request_json['date_time']#.get('date_time')
+    today = request_json['date_time']  # .get('date_time')
     # print('entrou')
-
 
     startdata = {
         u'id': u'{0}'.format(today[:-9])
@@ -853,7 +898,7 @@ def makeorder(request):
         thisOrderRef.document(id).set(data)
         thisOrderRef = thisOrderRef.document(id).collection('products_id')
 
-        #product.update({'price_broto': None})
+        # product.update({'price_broto': None})
         # product_dict = literal_eval(products_id)
         json_acceptable_string = products_id.replace("'", "\"")
         product_dict = json.loads(json_acceptable_string)
@@ -919,7 +964,7 @@ def makeorder(request):
                             if product.get("size") == "Inteira":
                                 paid_price = item.get("price_inteira")
 
-                    new_price = Decimal(paid_price)+Decimal(pizza_edge_price)
+                    new_price = Decimal(paid_price) + Decimal(pizza_edge_price)
                     paid_price = round(new_price, 2)
             else:
                 product1_price = 0.00
@@ -961,7 +1006,7 @@ def makeorder(request):
 
                 for product2 in all_items:
                     if product2.get('id') == product.get("product2_id"):
-                        product_description += " + "+product2.get('description')
+                        product_description += " + " + product2.get('description')
                         if product.get("size") == "Broto":
                             product2_price = product2.get("price_broto")
                         if product.get("size") == "Inteira":
@@ -975,7 +1020,7 @@ def makeorder(request):
                 pizza_edge_decimal_price = Decimal(pizza_edge_price)
                 max_price_decimal = Decimal(max_price)
 
-                new_price = max_price_decimal+pizza_edge_decimal_price
+                new_price = max_price_decimal + pizza_edge_decimal_price
                 paid_price = new_price
 
             thisProduct = {
@@ -997,7 +1042,7 @@ def makeorder(request):
                 u'size': u'{}'.format(product.get("size"))
             }
 
-            total_paid += Decimal(paid_price)*Decimal(product.get("quantity"))
+            total_paid += Decimal(paid_price) * Decimal(product.get("quantity"))
 
             thisOrderRef.document(thisId).set(thisProduct)
 
@@ -1015,6 +1060,7 @@ def makeorder(request):
     except Exception as e:
         return f"An Error Occured: {e}"
 
+
 def get_working_hours(request):
     # week_day = request.args.get('weekDay')
     week_day = request.GET.get('weekDay')
@@ -1029,13 +1075,14 @@ def get_working_hours(request):
     return JsonResponse(data, content_type="application/json")
     # return HttpResponse(docSnapshot.to_dict())
 
+
 def list_user_orders(request):
     """
         read() : Fetches documents from Firestore collection as JSON
         todo : Return document that matches query ID
         all_todos : Return all documents
     """
-    all_orders=[]
+    all_orders = []
     user_id = request.GET.get('id')
     docSnapshot = orders_ref.stream()
 
@@ -1045,25 +1092,25 @@ def list_user_orders(request):
         for order in data_stream:
             thisOrder = order.to_dict()
             tempMap = dict()
-            products_stream = orders_ref.document(doc.id).collection(doc.id).document(order.id).collection("products_id").stream()
+            products_stream = orders_ref.document(doc.id).collection(doc.id).document(order.id).collection(
+                "products_id").stream()
             # thisProductDict = {}
             for product in products_stream:
                 thisProduct = product.to_dict()
                 # thisOrder["products_id"][product.id] = thisProduct
                 tempMap[product.id] = thisProduct
 
-
             thisOrder.update({"products_id": tempMap})
             # print(thisProduct)
 
             all_orders.append(thisOrder)
-
 
     try:
         # Check if ID was passed to URL query
         return JsonResponse(all_orders, safe=False, content_type="application/json")
     except Exception as e:
         return f"An Error Occured: {e}"
+
 
 def list_users(request):
     """
@@ -1085,6 +1132,7 @@ def list_users(request):
             return JsonResponse(all_users, safe=False, content_type="application/json")
     except Exception as e:
         return f"An Error Occured: {e}"
+
 
 def list_products(request):
     """

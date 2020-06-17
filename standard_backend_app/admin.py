@@ -1,4 +1,6 @@
 import uuid
+from datetime import datetime
+from django.utils import timezone
 
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
@@ -16,10 +18,16 @@ class StandardAdminCategoria(admin.ModelAdmin):
     #     model = Categoria
     #     fields = ['image']
 
-    exclude = ('image',)
+    exclude = ('image_img',)
+    # list_display = ('description', 'name', 'image_img')
     list_display = ('description', 'name', 'image_img',)
     list_filter = ('title',)
-    readonly_fields = ('image_img',)
+    # readonly_fields = ('image_img',)
+    readonly_fields = ('admin_thumbnail', )
+    change_form_template = 'admin/custom/change_form.html'
+
+    admin_thumbnail = AdminThumbnail(image_field='image_60x60', template='category_image.html')
+    admin_thumbnail.short_description = 'Ícone'
 
     # A handy constant for the name of the alternate database.
     using = 'standard'
@@ -122,21 +130,21 @@ class StandardAdminTamanho(admin.ModelAdmin):
         return super().formfield_for_manytomany(db_field, request, using=self.using, **kwargs)
 
 
-class AdminImageWidget(AdminFileWidget):
-    def render(self, name, value, attrs=None, renderer=None):
-        output = []
-        if value and getattr(value, "url", None):
-            image_url = value.url
-            file_name = str(value)
-            output.append(u' <a href="%s" target="_blank"><img src="%s" width="150" alt="%s" /></a> %s ' % \
-                          (image_url, image_url, file_name, _('Change:')))
-        output.append(super(AdminFileWidget, self).render(name, value, attrs, renderer))
-        return mark_safe(u''.join(output))
+# class AdminImageWidget(AdminFileWidget):
+#     def render(self, name, value, attrs=None, renderer=None):
+#         output = []
+#         if value and getattr(value, "url", None):
+#             image_url = value.url
+#             file_name = str(value)
+#             output.append(u' <a href="%s" target="_blank"><img src="%s" width="150" alt="%s" /></a> %s ' % \
+#                           (image_url, image_url, file_name, _('Change:')))
+#         output.append(super(AdminFileWidget, self).render(name, value, attrs, renderer))
+#         return mark_safe(u''.join(output))
 
 
 class StandardAdminProduto(admin.ModelAdmin):
     exclude = ('image_img',)
-    list_display = ('show_desc', 'price', 'admin_thumbnail',)
+    list_display = ('show_desc', 'price', 'image_img', 'dateRegister',)
     list_filter = ('category',)
     readonly_fields = ('admin_thumbnail', 'dateRegister',)
     inlines = (SizePricesInline,)
@@ -163,6 +171,11 @@ class StandardAdminProduto(admin.ModelAdmin):
         # Tell Django to save objects to the 'other' database.
         if obj.id == '':
             obj.id = uuid.uuid1()
+
+        today = timezone.localtime(timezone.now()).isoformat()
+        # today = today.strftime("YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]")
+
+        obj.dateRegister = today
 
         obj.save(using=self.using)
 
