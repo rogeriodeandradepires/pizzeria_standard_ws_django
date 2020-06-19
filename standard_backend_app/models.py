@@ -1,9 +1,12 @@
 from datetime import datetime, date
+from decimal import Decimal
 
 from django import forms
+from django.core.validators import MinValueValidator
 from django.db import models
 
 # Create your models here.
+from django.utils import timezone
 from imagekit.admin import AdminThumbnail
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
@@ -61,15 +64,62 @@ class Categoria(models.Model):
 class Tamanho(models.Model):
     description = models.CharField(max_length=100, verbose_name='Descrição do tamanho')
     flavors_quantity = models.IntegerField(verbose_name='Quantidade de Sabores', default=1)
-    price = models.DecimalField(verbose_name='Preço', max_digits=10, decimal_places=2, default=0.00)
+    price = models.DecimalField(validators=[MinValueValidator(Decimal('0.01'))], verbose_name='Preço', max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
         return self.description + ' - ' + 'R$ ' + str(self.price) + ' - ' + str(self.flavors_quantity) + ' sabor(es)'
 
 
+class Pedido(models.Model):
+    PAYMENT_METHOD = (('credit_card', 'Cartão'), ('money', 'Dinheiro'))
+    DELIVERY_OPTION = (('withdraw', 'Retirada'), ('delivery', 'Entrega'))
+    # class PaymentMethod(models.TextChoices):
+    #     CREDIT_CARD = "Cartão"
+    #     MONEY = "Dinheiro"
+
+    # class DeliveryOptions(models.TextChoices):
+    #     WITHDRAW = "Retirada"
+    #     DELIVERY = "Entrega"
+
+    today = timezone.localtime(timezone.now()).isoformat()
+    # today = timezone.now()
+    # today = today.strftime("YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]")
+
+    # today = datetime.now()
+    # today = today.strftime("%d-%m-%Y-%H:%M:%S")
+    # today = today.strptime(str(today), "YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]")
+
+    name = models.CharField(max_length=250, verbose_name='Nome do Cliente')
+    phone = models.CharField(max_length=250, verbose_name='Telefone do Cliente')
+    dateTime = models.DateTimeField(default=today, blank=True, null=True, verbose_name='Data do Registro')
+    coupon_id = models.CharField(max_length=100, verbose_name='Cupom de Desconto')
+    delivery = models.CharField(choices=DELIVERY_OPTION, default='withdraw', max_length=100, verbose_name='Forma de Entrega')
+    delivery_address = models.CharField(max_length=100, verbose_name='Endereço de Entrega')
+    id = models.CharField(primary_key=True, max_length=100, editable=False)
+    total = models.DecimalField(validators=[MinValueValidator(Decimal('0.01'))], verbose_name='Total', max_digits=10, decimal_places=2, blank=True, null=True)
+    payment_method = models.CharField(choices=PAYMENT_METHOD, default='credit_card', max_length=100, verbose_name='Forma de Pagamento')
+    payment_change = models.DecimalField(validators=[MinValueValidator(Decimal('0.01'))], verbose_name='Troco para', max_digits=10, decimal_places=2, blank=True, null=True)
+    picture = models.ImageField(upload_to='images/standard_pizzeria/users_pictures', verbose_name='Url da Foto', )
+
+    image_100x100 = ImageSpecField(
+        source='picture',
+        processors=[ResizeToFill(100, 100)],
+        format='PNG',
+        options={'quality': 85}
+    )
+
+    def __str__(self):
+        return self.name + ' - ' + self.phone + ' - ' + self.total
+
+    def show_desc(self):
+        return self.name + ' - ' + self.phone + ' - ' + self.total
+
+
 class Produto(models.Model):
-    today = datetime.now()
-    today = today.strftime("%d-%m-%Y-%H:%M:%S")
+    # today = datetime.now()
+    # today = today.strftime("%d-%m-%Y-%H:%M:%S")
+
+    today = timezone.localtime(timezone.now()).isoformat()
 
     dateRegister = models.DateTimeField(default=today, blank=True, null=True, verbose_name='Data do Último Registro')
     category = models.ForeignKey(Categoria, on_delete=models.CASCADE, default='gYOBtzVcIFN01Z7R9Utx',
@@ -77,7 +127,7 @@ class Produto(models.Model):
     description = models.CharField(max_length=250, verbose_name='Descrição')
     ingredients = models.CharField(max_length=250, verbose_name='Ingredientes', blank=True, null=True)
     notes = models.CharField(max_length=250, verbose_name='Observações', blank=True, null=True)
-    price = models.DecimalField(help_text='Deixar em branco se for Pizza', verbose_name='Preço (Explícito)',
+    price = models.DecimalField(validators=[MinValueValidator(Decimal('0.01'))], help_text='Deixar em branco se for Pizza', verbose_name='Preço (Explícito)',
                                 max_digits=10, decimal_places=2, blank=True,
                                 null=True)
     size = models.CharField(help_text='Deixar em branco se for Pizza', max_length=50,
