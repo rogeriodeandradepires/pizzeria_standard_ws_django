@@ -16,11 +16,14 @@ import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DEBUG = True
+
 env = environ.Env(
     DEBUG=(bool, False),
+    # DEBUG=(bool, True),
 )
 
-
+# DEBUG = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -28,7 +31,7 @@ env = environ.Env(
 SECRET_KEY = 'rcrggyn(9!l-rzu26w4v1+wvl-a5vhbi=k+hjs*r3jmz^d0a9$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*']
@@ -85,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pizzeria_standard_ws.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -128,7 +130,6 @@ DATABASES = {
     # }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -147,7 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -161,13 +161,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = ''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR, os.path.join('pandras_homepage/templates/'),
-    BASE_DIR, os.path.join('/media/'), BASE_DIR, os.path.join('/static/')]
+                    BASE_DIR, os.path.join('/media/'), BASE_DIR, os.path.join('/static/')]
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # GOOGLE_APPLICATION_CREDENTIALS = os.path.join(

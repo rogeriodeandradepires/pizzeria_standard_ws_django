@@ -12,8 +12,10 @@ from django.shortcuts import render
 # Create your views here.
 # pages/views.py
 from django.http import HttpResponse, JsonResponse
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.timezone import make_aware
+from django.views.generic import ListView, CreateView, UpdateView
 from flask import Flask, jsonify, request, render_template
 import os
 import firebase_admin
@@ -48,7 +50,8 @@ import MySQLdb.cursors
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
 # if not firebase_admin._apps:
 #     firebase_admin.initialize_app(cred, newDict, 'Django')
-from standard_backend_app.models import Categoria, Produto, Tamanho, Valore
+from standard_backend_app.forms import ItemForm
+from standard_backend_app.models import Categoria, Produto, Tamanho, Valore, Item
 
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dom-marino-ws-firebase-adminsdk-x049u-1128490a39.json"
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "standard-pizzeria-firebase-adminsdk-51hcl-c8dadbf83f.json"
@@ -174,7 +177,6 @@ def save_tamanho_e_valore(size_id, size_id_dict, produto):
 
 
 def process_prices_and_images(images, prices, product, category_name):
-
     for image in images:
         import urllib.request as req
         path = "images/standard_pizzeria/products/%s/image_name.png" % category_name
@@ -261,7 +263,7 @@ def save_product_to_db(product, category_name):
     # product.update({'category_id': category['id']})
 
     # if product not in all_products_db:
-        # product['image'] = product['image'].replace("https://storage.googleapis.com/dom-marino-ws.appspot.com/products/", "images/standard_pizzeria/products/")
+    # product['image'] = product['image'].replace("https://storage.googleapis.com/dom-marino-ws.appspot.com/products/", "images/standard_pizzeria/products/")
     m = Produto(**product)
     m.save(using='standard')
     return m
@@ -643,7 +645,9 @@ def on_users_snapshot(doc_snapshot, changes, read_time):
 
 
 # Watch the document
-# cat_watch = categories_ref.on_snapshot(on_categories_snapshot)
+cat_watch = categories_ref.on_snapshot(on_categories_snapshot)
+
+
 # nab_watch = non_alcoholic_beverages_ref.on_snapshot(on_nab_snapshot)
 # ab_watch = alcoholic_beverages_ref.on_snapshot(on_ab_snapshot)
 # beers_watch = beers_ref.on_snapshot(on_beers_snapshot)
@@ -718,6 +722,22 @@ def monitor_watches():
 
 # monitor_watches()
 
+class ItemListView(ListView):
+    model = Item
+    context_object_name = 'itens'
+
+class ItemCreateView(CreateView):
+    model = Item
+    form_class = ItemForm
+    fields = ('produto', 'tamanho')
+    success_url = reverse_lazy('item_changelist')
+
+class ItemUpdateView(UpdateView):
+    model = Item
+    form_class = ItemForm
+    fields = ('produto', 'tamanho')
+    success_url = reverse_lazy('item_changelist')
+
 def list_categories(request):
     """
         read() : Fetches documents from Firestore collection as JSON
@@ -725,8 +745,8 @@ def list_categories(request):
         all_todos : Return all documents
     """
 
-    while len(all_categories) == 0:
-        time.sleep(1)
+    # while len(all_categories) == 0:
+    #     time.sleep(1)
 
     try:
         # Check if ID was passed to URL query
@@ -1074,6 +1094,72 @@ def get_working_hours(request):
     # return jsonify(docSnapshot.to_dict()), 200
     return JsonResponse(data, content_type="application/json")
     # return HttpResponse(docSnapshot.to_dict())
+
+
+def list_products_from_db(request):
+
+    try:
+        # Check if ID was passed to URL query
+        product_id = request.GET.get('id', None)
+        print("product_id: %s" % product_id)
+
+        if product_id:
+            # country_id = request.GET.get('country')
+            # cities = City.objects.filter(country_id=country_id).order_by('name')
+            # return render(request, 'hr/city_dropdown_list_options.html', {'cities': cities})
+
+            produto = Produto.objects.get(id=product_id)
+            # produto = Produto.objects.filter(id=product_id).all().values()
+            produto = serializers.serialize('json', [produto], )
+            # produto = dict(produto)
+            # print(produto)
+            # all_product_valores = Valore.objects.filter(produto_id=product_id).all()
+            # all_product_sizes = Tamanho.objects.filter(id__in=all_product_valores.values('tamanho_id'))
+
+            # return render(request, 'admin/custom/sizes_dropdown_list_options.html', {'tamanhos': all_product_sizes})
+
+            return JsonResponse(produto, safe=False, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            # return JsonResponse(list(Tamanho.objects.all().values()), safe=False, content_type="application/json")
+            return JsonResponse(None, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+
+def list_product_prices(request):
+
+    try:
+        # Check if ID was passed to URL query
+        product_id = request.GET.get('id', None)
+        print("product_id: %s" % product_id)
+
+        if product_id:
+            # country_id = request.GET.get('country')
+            # cities = City.objects.filter(country_id=country_id).order_by('name')
+            # return render(request, 'hr/city_dropdown_list_options.html', {'cities': cities})
+
+            all_product_sizes = []
+            all_product_valores = Valore.objects.filter(produto_id=product_id).all().values()
+            # all_product_valores = Valore.objects.filter(produto_id=product_id).all()
+            # all_product_sizes = Tamanho.objects.filter(id__in=all_product_valores.values('tamanho_id'))
+
+            # return render(request, 'admin/custom/sizes_dropdown_list_options.html', {'tamanhos': all_product_sizes})
+
+            for relation in all_product_valores:
+                all_product_sizes.append(model_to_dict(Tamanho.objects.get(id=relation['tamanho_id'])))
+
+            return JsonResponse(all_product_sizes, safe=False, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            # return JsonResponse(list(Tamanho.objects.all().values()), safe=False, content_type="application/json")
+            return JsonResponse(None, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+
+    # print("product_id: %s" %product_id)
+
 
 
 def list_user_orders(request):

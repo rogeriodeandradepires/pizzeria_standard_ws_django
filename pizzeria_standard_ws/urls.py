@@ -27,11 +27,21 @@ urlpatterns = [
     path('', include('standard_backend_app.urls')),
     path('get_working_hours/', include('standard_backend_app.urls')),
     path('list_categories/', include('standard_backend_app.urls')),
+    path('list_product_prices/', include('standard_backend_app.urls')),
+    path('list_products_from_db/', include('standard_backend_app.urls')),
     path('create_user/', include('standard_backend_app.urls')),
     path('makeorder/', include('standard_backend_app.urls')),
     path('list_user_orders/', include('standard_backend_app.urls')),
     path('list_users/', include('standard_backend_app.urls')),
     path('list_products/', include('standard_backend_app.urls')),
+    path('item_chagelist/', include('standard_backend_app.urls')),
+    path('add_item/', include('standard_backend_app.urls')),
+    path('<int:pk>/', include('standard_backend_app.urls')),
+
     # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.STATICFILES_DIRS, document_root=settings.STATICFILES_DIRS)
+# urlpatterns += static(settings.STATIC_ROOT, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)

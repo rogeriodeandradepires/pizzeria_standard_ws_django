@@ -1,0 +1,445 @@
+{% extends "admin/change_form.html" %}
+{#{% extends "admin/change_list.html" %}#}
+{% load i18n admin_urls static admin_modify %}
+{% load static %}
+<link rel='stylesheet' href="{% static 'static/css/hide.css' %}"
+      type='text/css' media='all'/>
+{% block field_sets %}
+    {% for fieldset in adminform %}
+        {#  Custom fieldsets template #}
+        {% include "admin/custom/fieldset.html" with inline_admin_formsets=inline_admin_formsets %}
+    {% endfor %}
+{% endblock %}
+
+{# Filter inlines that where already rendered to avoid duplication #}
+{% block inline_field_sets %}
+    {% for inline_admin_formset in inline_admin_formsets %}
+        {% if not inline_admin_formset.opts.insert_after %}
+            {% include inline_admin_formset.opts.template %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var $ = django.jQuery;
+
+        var deliverySelectField = document.getElementById('id_delivery');
+
+        if (deliverySelectField.options[deliverySelectField.selectedIndex].value === 'withdraw') {
+            $('#id_delivery_address').val('Retirada');
+            $('#id_delivery_address').parent().parent().hide();
+        }
+
+        deliverySelectField.onchange = show_hide_delivery_address;
+
+        function show_hide_delivery_address() {
+            if (deliverySelectField.options[deliverySelectField.selectedIndex].value === 'withdraw') {
+                $('#id_delivery_address').val('Retirada');
+                $('#id_delivery_address').parent().parent().hide();
+            } else {
+                $('#id_delivery_address').val('');
+                $('#id_delivery_address').parent().parent().show();
+            }
+        };
+
+        var paymentSelectField = document.getElementById('id_payment_method');
+
+        if (paymentSelectField.options[paymentSelectField.selectedIndex].value === 'credit_card') {
+            $('#id_payment_change').parent().parent().hide();
+        }
+
+        paymentSelectField.onchange = show_hide_payment_change;
+
+        function show_hide_payment_change() {
+            if (paymentSelectField.options[paymentSelectField.selectedIndex].value === 'credit_card') {
+                $('#id_payment_change').val('');
+                $('#id_payment_change').parent().parent().hide();
+            } else {
+                $('#id_payment_change').parent().parent().show();
+            }
+        };
+
+        {#$('.inline-group .inline-related input').each(function (i, e) {#}
+        {#alert(e.tagName);#}
+        {#    $(e).bind('onClick', function (e) {#}
+        {#        alert();#}
+        {#        if (this.checked) {#}
+        {#            // marked for deletion#}
+        {#            $(this).parents('.inline-related').children('fieldset.module').addClass('collapsed collapse')#}
+        {#        } else {#}
+        {#            $(this).parents('.inline-related').children('fieldset.module').removeClass('collapsed')#}
+        {#        }#}
+        {#    })#}
+        {# })#}
+        {#;#}
+        {#        #}
+
+        {#alert();#}
+
+        {#var productSelectField = document.getElementById('id_item_set-0-produto');#}
+        var filhos_da_div_item_set_group = document.getElementById('item_set-group').children;
+        var filhos_da_div_tabular = filhos_da_div_item_set_group[0].children;
+        var filhos_da_fieldset = filhos_da_div_tabular[4].children;
+        var filhos_da_table = filhos_da_fieldset[1].children;
+        var tbody = filhos_da_table[1];
+
+        {#alert();#}
+
+        {#var teste = '{{ var_from_extra_context }}';#}
+        {#alert(teste);#}
+        var tbodyCount = tbody.children.length + 1;
+        var list = [];
+        {#alert(tbodyCount);#}
+        {#$('#id_item_set-0-tamanho').parent().parent().hide();#}
+        {#$('.column-tamanho').hide();#}
+
+        tbody.addEventListener('DOMNodeInserted', function (event) {
+
+            for (i = 2; i < tbody.children.length; i++) {
+                var idProdutoSelectHTML = 'id_item_set-';
+                let cont = i - 2;
+
+                {#alert(tbody.children[cont].children[3].children[0].innerHTML);#}
+
+                idProdutoSelectHTML = idProdutoSelectHTML + cont + '-produto';
+                {#id = id.concat(str.valueOf(cont).toString()).concat('-produto');#}
+                {#alert(idProdutoSelectHTML);#}
+
+                let productSelectField = document.getElementById(idProdutoSelectHTML);
+                var idTamanhoSelectHTML = 'id_item_set-';
+                {#var contTamanho = i - 2;#}
+                idTamanhoSelectHTML = idTamanhoSelectHTML + cont + '-tamanho';
+                var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);
+                {#for (tamanho in tamanhoSelectField.options) {#}
+                {#alert(tamanho);#}
+                {# }#}
+
+                productSelectField.onchange = function () {
+                    {#alert(idProdutoSelectHTML + ' mudou');#}
+                    var text = productSelectField.options[productSelectField.selectedIndex].text;
+                    var value = productSelectField.options[productSelectField.selectedIndex].value;
+
+                    if (value !== '') {
+                        var idTamanho = 'id_item_set-';
+                        {#var contTamanho = i - 2;#}
+                        idTamanho = idTamanho + cont + '-tamanho';
+
+                        {#retrieveSizePricesValue(value, idTamanho);#}
+                        $.ajax({
+                            url: "/list_product_prices/",
+                            type: "GET",
+                            dataType: "json",
+                            data: {id: value},
+                            success: function (data) {
+                                {#alert("INSERTED " + idTamanho + ": " + data.length);#}
+
+                                if (data.length === 0) {
+                                    {#alert();#}
+
+                                    {#tbody.children[cont].children[3].children[0].innerHTML = {{ produto }};#}
+
+                                    $.ajax({
+                                        url: "/list_products_from_db/",
+                                        type: "GET",
+                                        dataType: "json",
+                                        contentType: 'application/json; charset=utf-8',
+                                        data: {id: value},
+                                        success: function (thisdata) {
+                                            {#var teste = jQuery.parseJSON(thisdata);#}
+                                            var returned_data = JSON.parse(thisdata);
+
+                                            $.each(returned_data, function (key, val) {
+                                                $.each(val, function (objkey, objval) {
+                                                    {#alert(objkey + ': ' + objval);#}
+                                                    if (objkey === 'fields') {
+                                                        $.each(objval, function (objkey2, objval2) {
+                                                            let text = 'R$ ' + objval['price'];
+                                                            tbody.children[cont].children[3].children[0].innerHTML = text;
+                                                        });
+                                                    }
+                                                });
+                                             });
+                                            return data;
+                                        },
+                                        error: function (error) {
+                                            console.log("Error:");
+                                            console.log(error);
+                                            alert(error);
+                                        }
+                                    });
+
+                                    tamanho_select = document.getElementById(idTamanho);
+                                    var selector = $('#' + idTamanho);
+                                    selector.empty();
+
+                                    var o = new Option("---------", "");
+                                    $(o).html("---------");
+                                    selector.append(o);
+                                    {#$('#' + idTamanho).empty();#}
+
+
+                                    {#$('#' + idTamanho).each(function () {#}
+                                    {#    alert($(this).val());#}
+                                    {#$(this).find('X').remove();#}
+                                    {# });#}
+                                    {#tamanhoSelectField.value = '';#}
+
+                                    {#length = tamanho_select.options.length;#}
+
+                                    {#tamanhoSelectField.length = 1;#}
+                                } else {
+                                    tbody.children[cont].children[3].children[0].innerHTML = '---';
+                                    {#$('#' + idTamanho).parent().parent().show();#}
+                                    {#$('.column-tamanho').show();#}
+                                }
+
+                                var selector = $('#' + idTamanho);
+                                selector.empty();
+                                var o = new Option("---------", "");
+                                $(o).html("---------");
+                                selector.append(o);
+
+                                $.each(data, function (key, val) {
+                                    {#alert(key + ': ' + val);#}
+                                    let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';
+                                    let newOption = document.createElement("option");
+                                    newOption.value = val['id'];
+                                    newOption.innerHTML = text;
+                                    {#var o = new Option("option text", "value");#}
+                                    {#/// jquerify the DOM object 'o' so we can use the html method#}
+                                    {#$(o).html("option text");#}
+
+
+                                    selector.append(newOption);
+                                    {#tamanhoSelectField.options.add(newOption);#}
+                                    //Here is where I want to parse each object and add to the HTML table
+                                });
+
+                                {#alert('deu certo');#}
+                                return data;
+                            },
+                            error: function (error) {
+                                console.log("Error:");
+                                console.log(error);
+                                alert(error);
+                            }
+                        });
+                    }
+                };
+
+                tamanhoSelectField.onchange = function(){
+                    var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+                    var value = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].value;
+
+                    tbody.children[cont].children[3].children[0].innerHTML = text.split(" - ", 2)[1];
+
+                };
+
+            }
+        }, false);
+
+        tbody.addEventListener('DOMNodeRemoved', function (event) {
+
+            {#var option = event.target;#}
+            {##}
+            {#filhos_da_row = option.cells;#}
+            {#.options[productSelectField.selectedIndex].text#}
+            {#teste = filhos_da_row[0].children[1];#}
+            {#alert(teste.options[teste.selectedIndex].text);#}
+            {#filhos_da_cell = filhos_da_row[0].children;#}
+            {#alert(filhos_da_cell[0].innerHTML);#}
+            {##}
+            {#for (child in filhos_da_cell[0]){#}
+            {#alert(child['alt']);#}
+            {# }#}
+            {##}
+            {#alert ("The option with label " + option.toString() + " has been removed from the list.");#}
+            {#alert(event.toString());#}
+            {#alert("deletou");#}
+            {#tbodyCount = tbodyCount - 1;#}
+
+            for (i = 2; i < tbody.children.length; i++) {
+                var idProdutoSelectHTML = 'id_item_set-';
+                let cont = i - 2;
+                idProdutoSelectHTML = idProdutoSelectHTML + cont + '-produto';
+                {#id = id.concat(str.valueOf(cont).toString()).concat('-produto');#}
+                {#alert(idProdutoSelectHTML);#}
+
+                let productSelectField = document.getElementById(idProdutoSelectHTML);
+                var idTamanhoSelectHTML = 'id_item_set-';
+                {#var contTamanho = i - 2;#}
+                {#cont = cont -1;#}
+                idTamanhoSelectHTML = idTamanhoSelectHTML + cont + '-tamanho';
+                var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);
+
+                productSelectField.onchange = function () {
+                    {#alert(idProdutoSelectHTML + ' mudou');#}
+                    var text = productSelectField.options[productSelectField.selectedIndex].text;
+                    var value = productSelectField.options[productSelectField.selectedIndex].value;
+
+                    if (value !== '') {
+                        var idTamanho = 'id_item_set-';
+                        idTamanho = idTamanho + cont + '-tamanho';
+
+                        $.ajax({
+                            url: "/list_product_prices/",
+                            type: "GET",
+                            dataType: "json",
+                            data: {id: value},
+                            success: function (data) {
+
+                                if (data.length === 0) {
+                                    {#tamanho_select = document.getElementById(idTamanho);#}
+                                    {#tamanhoSelectField.value = '';#}
+                                    var selector = $('#' + idTamanho);
+                                    selector.empty();
+
+                                    var o = new Option("---------", "");
+                                    $(o).html("---------");
+                                    selector.append(o);
+
+                                    $.ajax({
+                                        url: "/list_products_from_db/",
+                                        type: "GET",
+                                        dataType: "json",
+                                        contentType: 'application/json; charset=utf-8',
+                                        data: {id: value},
+                                        success: function (thisdata) {
+                                            {#var teste = jQuery.parseJSON(thisdata);#}
+                                            var returned_data = JSON.parse(thisdata);
+
+                                            $.each(returned_data, function (key, val) {
+                                                $.each(val, function (objkey, objval) {
+                                                    {#alert(objkey + ': ' + objval);#}
+                                                    if (objkey === 'fields') {
+                                                        $.each(objval, function (objkey2, objval2) {
+                                                            let text = 'R$ ' + objval['price'];
+                                                            tbody.children[cont].children[3].children[0].innerHTML = text;
+                                                        });
+                                                    }
+                                                });
+                                             });
+                                            return data;
+                                        },
+                                        error: function (error) {
+                                            console.log("Error:");
+                                            console.log(error);
+                                            alert(error);
+                                        }
+                                    });
+
+                                    {#length = tamanhoSelectField.options.length;#}
+
+                                    {#tamanhoSelectField.length = 1;#}
+                                } else {
+                                    tbody.children[cont].children[3].children[0].innerHTML = '---';
+                                    {#$('#' + idTamanho).parent().parent().show();#}
+                                    {#$('.column-tamanho').show();#}
+                                }
+
+                                var selector = $('#' + idTamanho);
+                                selector.empty();
+                                var o = new Option("---------", "");
+                                $(o).html("---------");
+                                selector.append(o);
+
+                                $.each(data, function (key, val) {
+                                    {#alert(key + ': ' + val);#}
+                                    let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';
+                                    let newOption = document.createElement("option");
+                                    newOption.value = val['id'];
+                                    newOption.innerHTML = text;
+                                    {#selector.empty();#}
+
+                                    {#var o = new Option("---------", "");#}
+                                    {#$(o).html("---------");#}
+                                    {#selector.append(o);#}
+                                    {#$('#' + idTamanho).options.add(newOption);#}
+                                    selector.append(newOption);
+                                    //Here is where I want to parse each object and add to the HTML table
+                                });
+
+                                {#alert('deu certo');#}
+                                return data;
+                            },
+                            error: function (error) {
+                                console.log("Error:");
+                                console.log(error);
+                                alert(error);
+                            }
+                        });
+
+                    }
+
+                };
+
+                tamanhoSelectField.onchange = function(){
+                    var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+                    var value = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].value;
+
+                    tbody.children[cont].children[3].children[0].innerHTML = text.split(" - ", 2)[1];
+
+                };
+
+            }
+
+        }, false);
+
+        {#function retrieveSizePricesValue(produto_id, idTamanho) {#}
+        {##}
+        {#    $.ajax({#}
+        {#        url: "/list_product_prices/",#}
+        {#        type: "GET",#}
+        {#        dataType: "json",#}
+        {#        data: {id: produto_id},#}
+        {#        success: function (data) {#}
+        {#            alert(idTamanho + ": " + data.length);#}
+        {##}
+        {#            if (data.length === 0) {#}
+        {#                tamanho_select = document.getElementById(idTamanho);#}
+        {#                tamanho_select.value = '';#}
+        {##}
+        {#                length = tamanho_select.options.length;#}
+        {##}
+        {#                tamanho_select.length = 1;#}
+        {#            } else {#}
+                        {#$('#' + idTamanho).parent().parent().show();#}
+                        {#$('.column-tamanho').show();#}
+        {#            }#}
+        {##}
+        {#            $.each(data, function (key, val) {#}
+                        {#alert(key + ': ' + val);#}
+        {#                let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';#}
+        {#                let newOption = document.createElement("option");#}
+        {#                newOption.value = val['id'];#}
+        {#                newOption.innerHTML = text;#}
+                        {#$('#' + idTamanho).options.add(newOption);#}
+        {#                document.getElementById(idTamanho).options.add(newOption);#}
+        {#                //Here is where I want to parse each object and add to the HTML table#}
+        {#            });#}
+        {##}
+                    {#alert('deu certo');#}
+        {#            return data;#}
+        {#        },#}
+        {#        error: function (error) {#}
+        {#            console.log("Error:");#}
+        {#            console.log(error);#}
+        {#            alert(error);#}
+        {#        }#}
+        {#    });// do something with resp here#}
+        {# }#}
+
+        {#function atributeSizePricesValue(arr) {#}
+        {#    $.each(arr, function (key, val) {#}
+        {#        $.each(val, function (objectKey, objectVal) {#}
+        {#            alert(objectKey + ': ' + objectVal);#}
+        {#            //Here is where I want to parse each object and add to the HTML table#}
+        {#        });#}
+        {#        //Here is where I want to parse each object and add to the HTML table#}
+        {#    }); // do something with resp here#}
+        {# }#}
+
+    </script>
+{% endblock %}
