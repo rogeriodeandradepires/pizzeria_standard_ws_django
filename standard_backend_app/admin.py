@@ -409,7 +409,7 @@ class StandardAdminPedido(admin.ModelAdmin):
         # on the 'other' database.
         return super().formfield_for_manytomany(db_field, request, using=self.using, **kwargs)
 
-
+# pandras_admin_site = PandrasAdminSite(name='pandras_admin')
 admin.site.register(Categoria, StandardAdminCategoria)
 admin.site.register(Produto, StandardAdminProduto)
 admin.site.register(Tamanho, StandardAdminTamanho)

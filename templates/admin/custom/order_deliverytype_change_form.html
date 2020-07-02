@@ -90,10 +90,41 @@
         {#var teste = '{{ var_from_extra_context }}';#}
         {#alert(teste);#}
         var tbodyCount = tbody.children.length + 1;
+        var global_total = parseFloat("0.00");
         var list = [];
+
+        var meuObj = {
+            get bar() {
+                {#console.log({name: 'foo', object: obj, type: 'get'});#}
+                {#alert();#}
+                return meuObj._bar;
+            },
+            set bar(val) {
+                {#console.log({name: 'bar', object: obj, type: 'set', oldValue: obj._bar});#}
+                input_total.value = val;
+                return meuObj._bar = val;
+            }
+        };
+
+
+        {#Object.observe(meuObj, function (changes) {#}
+        {#    console.log(changes);#}
+        {#    alert(changes);#}
+        {# });#}
+
+        {#alert();#}
+
         {#alert(tbodyCount);#}
         {#$('#id_item_set-0-tamanho').parent().parent().hide();#}
         {#$('.column-tamanho').hide();#}
+
+        const object = {
+            pk: "{{ original.pk }}",
+        };
+        {#alert(object.pk);#}
+
+        let input_total = document.getElementById('id_total');
+        var previousTamanho = [];
 
         tbody.addEventListener('DOMNodeInserted', function (event) {
 
@@ -101,23 +132,19 @@
                 var idProdutoSelectHTML = 'id_item_set-';
                 let cont = i - 2;
 
-                {#alert(tbody.children[cont].children[3].children[0].innerHTML);#}
-
                 idProdutoSelectHTML = idProdutoSelectHTML + cont + '-produto';
-                {#id = id.concat(str.valueOf(cont).toString()).concat('-produto');#}
-                {#alert(idProdutoSelectHTML);#}
 
                 let productSelectField = document.getElementById(idProdutoSelectHTML);
                 var idTamanhoSelectHTML = 'id_item_set-';
-                {#var contTamanho = i - 2;#}
                 idTamanhoSelectHTML = idTamanhoSelectHTML + cont + '-tamanho';
-                var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);
-                {#for (tamanho in tamanhoSelectField.options) {#}
-                {#alert(tamanho);#}
-                {# }#}
+                {#var productSelector = $('#' + idProdutoSelectHTML);#}
+                {#var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);#}
 
                 productSelectField.onchange = function () {
-                    {#alert(idProdutoSelectHTML + ' mudou');#}
+
+                    {#alert("produto no inserted: " + idProdutoSelectHTML);#}
+                    {#var text = $(this).children("option").filter(":selected").text();#}
+                    {#var value = $(this).val();#}
                     var text = productSelectField.options[productSelectField.selectedIndex].text;
                     var value = productSelectField.options[productSelectField.selectedIndex].value;
 
@@ -126,310 +153,443 @@
                         {#var contTamanho = i - 2;#}
                         idTamanho = idTamanho + cont + '-tamanho';
 
-                        {#retrieveSizePricesValue(value, idTamanho);#}
+                        retrieveSizePricesValue(value, idTamanho, productSelectField, cont);
+                    }
+                };
+
+                {#productSelector.change(function () {#}
+                {# });#}
+            }
+        }, false);
+
+        function updateCount() { // Declare function
+            {#alert(tbody.children.length);#}
+            {#global_total = parseFloat("0.00");#}
+            {#meuObj.bar = global_total;#}
+            if (tbodyCount !== tbody.children.length) {
+                if (tbodyCount > tbody.children.length) {
+                    tbodyCount = tbodyCount - 1;
+
+                    global_total = parseFloat("0.00");
+                    meuObj.bar = global_total;
+
+                    {#alert("removeu: " + tbody.children.length);#}
+                    for (i = 2; i < tbody.children.length; i++) {
+                        alert();
+
+                        var idProdutoSelectHTML = 'id_item_set-';
+                        var cont = i - 2;
+                        idProdutoSelectHTML = idProdutoSelectHTML + cont + '-produto';
+                        {#id = id.concat(str.valueOf(cont).toString()).concat('-produto');#}
+                        {#alert(idProdutoSelectHTML);#}
+                        {#alert(cont);#}
+
+                        var productSelectField = document.getElementById(idProdutoSelectHTML);
+                        var idTamanhoSelectHTML = 'id_item_set-';
+                        {#var contTamanho = i - 2;#}
+                        {#cont = cont -1;#}
+                        idTamanhoSelectHTML = idTamanhoSelectHTML + cont + '-tamanho';
+                        var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);
+
+                        productSelectField.onchange = function () {
+                            {#alert(idProdutoSelectHTML + ' mudou');#}
+                            var text = productSelectField.options[productSelectField.selectedIndex].text;
+                            var value = productSelectField.options[productSelectField.selectedIndex].value;
+
+                            if (value !== '') {
+                                var idTamanho = 'id_item_set-';
+                                idTamanho = idTamanho + cont + '-tamanho';
+
+                                retrieveSizePricesValue(value, idTamanho, productSelectField, cont);
+
+                            }
+
+                        };
+                        {#alert();#}
+                        previousTamanho[cont] = '';
+
+                        tamanhoSelector.on('focus', function () {
+                            {#var ddl = $(this);#}
+                            previousTamanho[cont] = $(this).children("option").filter(":selected").text();
+                            previousTamanho[cont] = previousTamanho[cont].split(" - ", 2)[1];
+
+                        });
+
+                        tamanhoSelectField.onchange = function () {
+                            var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+                            var value = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].value;
+                            text = text.split(" - ", 2)[1];
+
+                            tbody.children[cont].children[3].children[0].innerHTML = text;
+                            {#alert("1: "+parseFloat(text.split("R$ ", 2)[1]));#}
+                            //se mudar de tamanho depois de excluir linha
+                            {#global_total -= parseFloat(previousTamanho[cont].split("R$ ", 2)[1]);#}
+
+                            console.log("tamanho onchange prev: " + previousTamanho[cont]);
+
+                            //computeNewTotalValue(parseFloat(previousTamanho[cont].split("R$ ", 2)[1]), "subtract");
+                            //computeNewTotalValue(parseFloat(text.split("R$ ", 2)[1]), "add");
+                            {#global_total += parseFloat(text.split("R$ ", 2)[1]);#}
+                            {#input_total.value = parseFloat(global_total).toFixed(2);#}
+
+                        };
+
+                    }
+                } else {
+                    tbodyCount = tbodyCount + 1;
+                    {#alert("adicionou: " + tbody.children.length);#}
+                }
+
+                {#alert("mudou: " + tbody.children.length);#}
+            }
+
+        }
+
+        {#var listObserver = new MutationObserver(updateCount);#}
+        var listObserver = new MutationObserver(function (mutations) {
+            {#alert(mutations.attributes);#}
+
+            mutations.forEach(function (mutation) {
+                {#alert(mutation.removedNodes.length);#}
+                {#var text = mutation.target.options[mutation.target.selectedIndex].text;#}
+
+                if (mutation.removedNodes.length === 1) {
+                    mutation.removedNodes.forEach(function (node) {
+
+                        {#alert(node.innerHTML);#}
+                        {#alert(node.childNodes[1].childNodes[0]);#}
+                        {#alert(node.nodeName);#}
+                        {#alert(node.childNodes[1].nodeName);#}
+                        //field produto
+                        {#alert(node.childNodes[3].className);#}
+                        //div related-widget-wrapper
+                        {#alert(node.childNodes[3].childNodes[1].className);#}
+                        var idProduto = node.childNodes[3].childNodes[1].childNodes[1].id;
+                        var produtoValue = node.childNodes[3].childNodes[1].childNodes[1].value;
+                        var tamanhoValue = node.childNodes[5].childNodes[1].childNodes[1].value;
+                        var produtoOptionsLength = node.childNodes[3].childNodes[1].childNodes[1].options.length;
+                        var tamanhoOptionsLength = node.childNodes[5].childNodes[1].childNodes[1].options.length;
+                        var priceValue = node.childNodes[7].childNodes[1].innerHTML;
+
+                        if (priceValue !== "---") {
+                            computeNewTotalValue(priceValue, 'subtract');
+                            {#alert(priceValue);#}
+                        }
+                        //field tamanho
+                        {#alert(node.childNodes[5].className);#}
+                        //div related-widget-wrapper
+                        {#alert(node.childNodes[5].childNodes[1].className);#}
+                        {#alert(node.childNodes[5].childNodes[1].childNodes[1].id);#}
+                    });
+                    updateCount();
+                }
+                {#mutation.target.childNodes.forEach(function (node) {#}
+                    {#alert(node.innerHTML);#}
+                {# });#}
+            });
+        });
+
+        listObserver.observe(tbody, {
+            attributes: true,
+            characterDataOldValue: true,
+            attributeOldValue: true,
+            childList: true,
+            characterData: true
+        });
+
+        function computeNewTotalValue(valor, op) {
+            {#alert(op);#}
+            valor = parseFloat(valor.split("R$ ", 2)[1]);
+            console.log("compute valor: " + valor);
+            console.log("compute global: " + global_total);
+            if (op === 'subtract') {
+                console.log('subtract');
+                global_total -= valor;
+            } else {
+                global_total += valor;
+                console.log('add');
+            }
+
+            console.log("compute global: " + global_total);
+
+
+            {#input_total.value = parseFloat(global_total).toFixed(2);#}
+            meuObj.bar = parseFloat(global_total).toFixed(2);
+            {#$('#id_total').val(parseFloat(global_total).toFixed(2));#}
+
+        }
+
+        function retrieveSizePricesValue(produto_id, idTamanho, productSelectField, cont) {
+            {#alert("produto_id:" + produto_id + ", idTamanho:" + idTamanho + ", productSelectField:" + productSelectField);#}
+            {#var previousTamanho[cont];#}
+            {#var previousPrice;#}
+            $.ajax({
+                url: "/list_product_prices/",
+                type: "GET",
+                dataType: "json",
+                data: {id: produto_id},
+                success: function (data) {
+                    {#alert("INSERTED " + idTamanho + ": " + data.length);#}
+
+                    if ("" + previousTamanho[cont] !== "undefined" && "" + previousTamanho[cont] !== "") {
+                        console.log(previousTamanho[cont]);
+                        computeNewTotalValue(previousTamanho[cont], 'subtract');
+                    }
+
+                    if (data.length === 0) {
                         $.ajax({
-                            url: "/list_product_prices/",
+                            url: "/list_products_from_db/",
                             type: "GET",
                             dataType: "json",
-                            data: {id: value},
-                            success: function (data) {
-                                {#alert("INSERTED " + idTamanho + ": " + data.length);#}
+                            contentType: 'application/json; charset=utf-8',
+                            data: {id: produto_id},
+                            success: function (thisdata) {
+                                {#var teste = jQuery.parseJSON(thisdata);#}
+                                var returned_data = JSON.parse(thisdata);
 
-                                if (data.length === 0) {
-                                    {#alert();#}
+                                $.each(returned_data, function (key, val) {
+                                    $.each(val, function (objkey, objval) {
+                                        {#alert(objkey + ': ' + objval);#}
+                                        if (objkey === 'fields') {
+                                            $.each(objval, function (objkey2, objval2) {
+                                                if (objkey2 === 'price') {
+                                                    let text = 'R$ ' + objval['price'];
+                                                    {#previousPrice = text;#}
+                                                    {#console.log("preço recuperado previousTamanho[cont]: " + previousTamanho[cont]);#}
+                                                    console.log("preço recuperado text: " + text);
+                                                    tbody.children[cont].children[3].children[0].innerHTML = text;
 
-                                    {#tbody.children[cont].children[3].children[0].innerHTML = {{ produto }};#}
+                                                    {#if (""+previousTamanho[cont] !== "undefined"){#}
+                                                    {#alert();#}
+                                                    {#    console.log("preço subtraiu: " + parseFloat(previousTamanho[cont].split("R$ ", 2)[1]));#}
+                                                    {#    //computeNewTotalValue(parseFloat(previousTamanho[cont].split("R$ ", 2)[1]), "subtract");#}
+                                                    {#previousTamanho[cont] = 'undefined';#}
+                                                    {# }#}
 
-                                    $.ajax({
-                                        url: "/list_products_from_db/",
-                                        type: "GET",
-                                        dataType: "json",
-                                        contentType: 'application/json; charset=utf-8',
-                                        data: {id: value},
-                                        success: function (thisdata) {
-                                            {#var teste = jQuery.parseJSON(thisdata);#}
-                                            var returned_data = JSON.parse(thisdata);
+                                                    {#alert(' antes: '+global_total);#}
+                                                    {#console.log(previousTamanho[cont]);#}
 
-                                            $.each(returned_data, function (key, val) {
-                                                $.each(val, function (objkey, objval) {
-                                                    {#alert(objkey + ': ' + objval);#}
-                                                    if (objkey === 'fields') {
-                                                        $.each(objval, function (objkey2, objval2) {
-                                                            let text = 'R$ ' + objval['price'];
-                                                            tbody.children[cont].children[3].children[0].innerHTML = text;
-                                                        });
-                                                    }
-                                                });
-                                             });
-                                            return data;
-                                        },
-                                        error: function (error) {
-                                            console.log("Error:");
-                                            console.log(error);
-                                            alert(error);
+                                                    {#alert(text.split("R$ ", 2)[1]);#}
+                                                    previousTamanho[cont] = text;
+                                                    {#console.log("preço recuperado previousTamanho[cont]: " + previousTamanho[cont]);#}
+                                                    console.log("preco recuperado global_total: " + global_total);
+                                                    {#global_total += parseFloat(text.split("R$ ", 2)[1]);#}
+                                                    computeNewTotalValue(text, "add");
+                                                    console.log("preco recuperado alterado: " + global_total);
+                                                    {#alert(' depois: '+global_total);#}
+                                                    {#alert();#}
+                                                }
+
+                                            });
                                         }
                                     });
-
-                                    tamanho_select = document.getElementById(idTamanho);
-                                    var selector = $('#' + idTamanho);
-                                    selector.empty();
-
-                                    var o = new Option("---------", "");
-                                    $(o).html("---------");
-                                    selector.append(o);
-                                    {#$('#' + idTamanho).empty();#}
-
-
-                                    {#$('#' + idTamanho).each(function () {#}
-                                    {#    alert($(this).val());#}
-                                    {#$(this).find('X').remove();#}
-                                    {# });#}
-                                    {#tamanhoSelectField.value = '';#}
-
-                                    {#length = tamanho_select.options.length;#}
-
-                                    {#tamanhoSelectField.length = 1;#}
-                                } else {
-                                    tbody.children[cont].children[3].children[0].innerHTML = '---';
-                                    {#$('#' + idTamanho).parent().parent().show();#}
-                                    {#$('.column-tamanho').show();#}
-                                }
-
-                                var selector = $('#' + idTamanho);
-                                selector.empty();
-                                var o = new Option("---------", "");
-                                $(o).html("---------");
-                                selector.append(o);
-
-                                $.each(data, function (key, val) {
-                                    {#alert(key + ': ' + val);#}
-                                    let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';
-                                    let newOption = document.createElement("option");
-                                    newOption.value = val['id'];
-                                    newOption.innerHTML = text;
-                                    {#var o = new Option("option text", "value");#}
-                                    {#/// jquerify the DOM object 'o' so we can use the html method#}
-                                    {#$(o).html("option text");#}
-
-
-                                    selector.append(newOption);
-                                    {#tamanhoSelectField.options.add(newOption);#}
-                                    //Here is where I want to parse each object and add to the HTML table
                                 });
 
-                                {#alert('deu certo');#}
                                 return data;
                             },
                             error: function (error) {
                                 console.log("Error:");
                                 console.log(error);
-                                alert(error);
-                            }
-                        });
-                    }
-                };
-
-                tamanhoSelectField.onchange = function(){
-                    var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
-                    var value = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].value;
-
-                    tbody.children[cont].children[3].children[0].innerHTML = text.split(" - ", 2)[1];
-
-                };
-
-            }
-        }, false);
-
-        tbody.addEventListener('DOMNodeRemoved', function (event) {
-
-            {#var option = event.target;#}
-            {##}
-            {#filhos_da_row = option.cells;#}
-            {#.options[productSelectField.selectedIndex].text#}
-            {#teste = filhos_da_row[0].children[1];#}
-            {#alert(teste.options[teste.selectedIndex].text);#}
-            {#filhos_da_cell = filhos_da_row[0].children;#}
-            {#alert(filhos_da_cell[0].innerHTML);#}
-            {##}
-            {#for (child in filhos_da_cell[0]){#}
-            {#alert(child['alt']);#}
-            {# }#}
-            {##}
-            {#alert ("The option with label " + option.toString() + " has been removed from the list.");#}
-            {#alert(event.toString());#}
-            {#alert("deletou");#}
-            {#tbodyCount = tbodyCount - 1;#}
-
-            for (i = 2; i < tbody.children.length; i++) {
-                var idProdutoSelectHTML = 'id_item_set-';
-                let cont = i - 2;
-                idProdutoSelectHTML = idProdutoSelectHTML + cont + '-produto';
-                {#id = id.concat(str.valueOf(cont).toString()).concat('-produto');#}
-                {#alert(idProdutoSelectHTML);#}
-
-                let productSelectField = document.getElementById(idProdutoSelectHTML);
-                var idTamanhoSelectHTML = 'id_item_set-';
-                {#var contTamanho = i - 2;#}
-                {#cont = cont -1;#}
-                idTamanhoSelectHTML = idTamanhoSelectHTML + cont + '-tamanho';
-                var tamanhoSelectField = document.getElementById(idTamanhoSelectHTML);
-
-                productSelectField.onchange = function () {
-                    {#alert(idProdutoSelectHTML + ' mudou');#}
-                    var text = productSelectField.options[productSelectField.selectedIndex].text;
-                    var value = productSelectField.options[productSelectField.selectedIndex].value;
-
-                    if (value !== '') {
-                        var idTamanho = 'id_item_set-';
-                        idTamanho = idTamanho + cont + '-tamanho';
-
-                        $.ajax({
-                            url: "/list_product_prices/",
-                            type: "GET",
-                            dataType: "json",
-                            data: {id: value},
-                            success: function (data) {
-
-                                if (data.length === 0) {
-                                    {#tamanho_select = document.getElementById(idTamanho);#}
-                                    {#tamanhoSelectField.value = '';#}
-                                    var selector = $('#' + idTamanho);
-                                    selector.empty();
-
-                                    var o = new Option("---------", "");
-                                    $(o).html("---------");
-                                    selector.append(o);
-
-                                    $.ajax({
-                                        url: "/list_products_from_db/",
-                                        type: "GET",
-                                        dataType: "json",
-                                        contentType: 'application/json; charset=utf-8',
-                                        data: {id: value},
-                                        success: function (thisdata) {
-                                            {#var teste = jQuery.parseJSON(thisdata);#}
-                                            var returned_data = JSON.parse(thisdata);
-
-                                            $.each(returned_data, function (key, val) {
-                                                $.each(val, function (objkey, objval) {
-                                                    {#alert(objkey + ': ' + objval);#}
-                                                    if (objkey === 'fields') {
-                                                        $.each(objval, function (objkey2, objval2) {
-                                                            let text = 'R$ ' + objval['price'];
-                                                            tbody.children[cont].children[3].children[0].innerHTML = text;
-                                                        });
-                                                    }
-                                                });
-                                             });
-                                            return data;
-                                        },
-                                        error: function (error) {
-                                            console.log("Error:");
-                                            console.log(error);
-                                            alert(error);
-                                        }
-                                    });
-
-                                    {#length = tamanhoSelectField.options.length;#}
-
-                                    {#tamanhoSelectField.length = 1;#}
-                                } else {
-                                    tbody.children[cont].children[3].children[0].innerHTML = '---';
-                                    {#$('#' + idTamanho).parent().parent().show();#}
-                                    {#$('.column-tamanho').show();#}
-                                }
-
-                                var selector = $('#' + idTamanho);
-                                selector.empty();
-                                var o = new Option("---------", "");
-                                $(o).html("---------");
-                                selector.append(o);
-
-                                $.each(data, function (key, val) {
-                                    {#alert(key + ': ' + val);#}
-                                    let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';
-                                    let newOption = document.createElement("option");
-                                    newOption.value = val['id'];
-                                    newOption.innerHTML = text;
-                                    {#selector.empty();#}
-
-                                    {#var o = new Option("---------", "");#}
-                                    {#$(o).html("---------");#}
-                                    {#selector.append(o);#}
-                                    {#$('#' + idTamanho).options.add(newOption);#}
-                                    selector.append(newOption);
-                                    //Here is where I want to parse each object and add to the HTML table
-                                });
-
-                                {#alert('deu certo');#}
-                                return data;
-                            },
-                            error: function (error) {
-                                console.log("Error:");
-                                console.log(error);
-                                alert(error);
+                                alert("Erro list_products_from_db: " + str(error));
                             }
                         });
 
-                    }
+                    } else {
 
-                };
-
-                tamanhoSelectField.onchange = function(){
-                    var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
-                    var value = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].value;
-
-                    tbody.children[cont].children[3].children[0].innerHTML = text.split(" - ", 2)[1];
-
-                };
-
-            }
-
-        }, false);
-
-        {#function retrieveSizePricesValue(produto_id, idTamanho) {#}
-        {##}
-        {#    $.ajax({#}
-        {#        url: "/list_product_prices/",#}
-        {#        type: "GET",#}
-        {#        dataType: "json",#}
-        {#        data: {id: produto_id},#}
-        {#        success: function (data) {#}
-        {#            alert(idTamanho + ": " + data.length);#}
-        {##}
-        {#            if (data.length === 0) {#}
-        {#                tamanho_select = document.getElementById(idTamanho);#}
-        {#                tamanho_select.value = '';#}
-        {##}
-        {#                length = tamanho_select.options.length;#}
-        {##}
-        {#                tamanho_select.length = 1;#}
-        {#            } else {#}
+                        tbody.children[cont].children[3].children[0].innerHTML = '---';
                         {#$('#' + idTamanho).parent().parent().show();#}
                         {#$('.column-tamanho').show();#}
-        {#            }#}
-        {##}
-        {#            $.each(data, function (key, val) {#}
-                        {#alert(key + ': ' + val);#}
-        {#                let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';#}
-        {#                let newOption = document.createElement("option");#}
-        {#                newOption.value = val['id'];#}
-        {#                newOption.innerHTML = text;#}
-                        {#$('#' + idTamanho).options.add(newOption);#}
-        {#                document.getElementById(idTamanho).options.add(newOption);#}
-        {#                //Here is where I want to parse each object and add to the HTML table#}
-        {#            });#}
-        {##}
-                    {#alert('deu certo');#}
-        {#            return data;#}
-        {#        },#}
-        {#        error: function (error) {#}
-        {#            console.log("Error:");#}
-        {#            console.log(error);#}
-        {#            alert(error);#}
-        {#        }#}
-        {#    });// do something with resp here#}
-        {# }#}
+                        previousTamanho[cont] = '';
+                    }
+
+                    var tamanhoSelector = $('#' + idTamanho);
+                    let tamanhoSelectField = document.getElementById(idTamanho);
+                    {#var text = tamanhoSelector.children("option").filter(":selected").text();#}
+                    var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+                    {#previousTamanho[cont] = text;#}
+
+                    {#alert(previousTamanho[cont]);#}
+                    {#alert(previousTamanho[cont].split("R$ ", 2)[1]);#}
+                    {#previousTamanho[cont] = "" + previousTamanho[cont];#}
+
+                    //para subtrair o valor do produto anterior
+                    // se o text selected no tamanho
+                    //parece que não entra aqui
+                    if (text !== "---------") {
+                        {#alert(text);#}
+                        previousTamanho[cont] = text.split(" - ", 2)[1];
+                        console.log("product change tamanho: " + previousTamanho[cont]);
+                        {#//computeNewTotalValue(parseFloat(previousTamanho[cont].split("R$ ", 2)[1]), 'subtract');#}
+                        {#global_total -= parseFloat(previousTamanho[cont].split("R$ ", 2)[1]);#}
+                        {#previousTamanho[cont] = previousPrice;#}
+                        {#console.log(previousTamanho[cont]);#}
+                        {#meuObj.bar = global_total;#}
+                        {#meuObj.bar = global_total - parseFloat(previousTamanho[cont].split("R$ ", 2)[1]);#}
+                        {#alert();#}
+                    } else {
+                        {#alert();#}
+                        {#previousPrice = "" + previousPrice;#}
+                        {#console.log("product change price: " + previousPrice);#}
+                        {#//computeNewTotalValue(parseFloat(previousPrice.split("R$ ", 2)[1]), 'subtract');#}
+                    }
+
+                    tamanhoSelector.empty();
+                    var o = new Option("---------", "");
+                    $(o).html("---------");
+                    tamanhoSelector.append(o);
+
+                    $.each(data, function (key, val) {
+                        {#populate tamanhoSelectField#}
+                        let text = val['description'] + ' - ' + 'R$ ' + val['price'] + ' - ' + val['flavors_quantity'] + ' sabor(es)';
+                        let newOption = document.createElement("option");
+                        newOption.value = val['id'];
+                        newOption.innerHTML = text;
+                        tamanhoSelector.append(newOption);
+                    });
+
+                    tamanhoSelectField.addEventListener("focusin", function () {
+                        var focusedText = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+                        if (focusedText !== "---------") {
+                            {#alert(focusedText);#}
+                            console.log(focusedText);
+                            previousTamanho[cont] = focusedText;
+                            previousTamanho[cont] = previousTamanho[cont].split(" - ", 2)[1];
+                        }
+                    });
+
+                    {#tamanhoSelector.on('focus', function () {#}
+                    {#var ddl = $(this);#}
+                    {#alert();#}
+                    {##}
+                    {#    if ($(this).children("option").filter(":selected").text() !== "---------") {#}
+                    {#        alert($(this).children("option").filter(":selected").text());#}
+                    {#        previousTamanho[cont] = $(this).children("option").filter(":selected").text();#}
+                    {#        previousTamanho[cont] = previousTamanho[cont].split(" - ", 2)[1];#}
+                    {#    }#}
+                    {##}
+                    {# });#}
+
+                    tamanhoSelectField.onchange = function () {
+
+                        {#var text = $(this).children("option").filter(":selected").text();#}
+                        var text = tamanhoSelectField.options[tamanhoSelectField.selectedIndex].text;
+
+                        {#var productSelectFieldText = productSelectField.children("option").filter(":selected").text();#}
+                        var productSelectFieldText = productSelectField.options[productSelectField.selectedIndex].text;
+
+                        {#alert('The option with value ' + $(this).val() + ' and text ' + text + ' was selected.');#}
+                        if (productSelectFieldText !== '---------' && text !== '---------') {
+                            {#alert(text);#}
+                            text = text.split(" - ", 2)[1];
+                            tbody.children[cont].children[3].children[0].innerHTML = text;
+
+                            //se mudar de tamanho
+                            {#alert(previousTamanho[cont]);#}
+                            {#console.log("mudou de tamanho: "+previousTamanho[cont]);#}
+
+                            {#meuObj.bar = global_total - parseFloat(previousTamanho[cont].split("R$ ", 2)[1]);#}
+
+
+                            {#alert(text);#}
+                            console.log("tamanho alterado: " + previousTamanho[cont]);
+                            if ("" + previousTamanho[cont] !== "" && "" + previousTamanho[cont] !== 'undefined') {
+                                computeNewTotalValue(previousTamanho[cont], "subtract");
+                            }
+                            {#global_total -= parseFloat(previousTamanho[cont].split("R$ ", 2)[1]);#}
+
+                            previousTamanho[cont] = text;
+                            {#console.log(previousTamanho[cont]);#}
+                            {#global_total += parseFloat(text.split("R$ ", 2)[1]);#}
+                            computeNewTotalValue(text, "add");
+                            {#console.log(previousTamanho[cont]);#}
+                            {#meuObj.bar = global_total;#}
+                            {#console.log(meuObj.bar);#}
+                            {#input_total.value = parseFloat(global_total).toFixed(2);#}
+                            {#$('#id_total').val(parseFloat(global_total).toFixed(2))#}
+                            {#alert('Você alterou com sucesso o tamanho de: ' + productSelectFieldText);#}
+
+
+
+                            {#alert(previousTamanho[cont]);#}
+                            {#alert(parseFloat(text.split("R$ ", 2)[1]));#}
+
+                            {#global_total += parseFloat(text.split("R$ ", 2)[1]);#}
+                            {#input_total.value = parseFloat(global_total).toFixed(2);#}
+                            {#//computeNewTotalValue(parseFloat(previousTamanho[cont].split("R$ ", 2)[1]), 'subtract');#}
+                            {#//computeNewTotalValue(parseFloat(text.split("R$ ", 2)[1]), 'add');#}
+                            {#meuObj.bar = global_total;#}
+                            {#alert();#}
+                        }
+                    };
+
+                    {#tamanhoSelector.change(function () {#}
+                    {#    var text = $(this).children("option").filter(":selected").text();#}
+                    {#var productSelectFieldText = productSelectField.children("option").filter(":selected").text();#}
+                    {#    var productSelectFieldText = productSelectField.options[productSelectField.selectedIndex].text;#}
+                    {##}
+                    {#alert('The option with value ' + $(this).val() + ' and text ' + text + ' was selected.');#}
+                    {#    if (productSelectFieldText !== '---------') {#}
+                    {#alert(text);#}
+                    {#        tbody.children[cont].children[3].children[0].innerHTML = text.split(" - ", 2)[1];#}
+                    {#    }#}
+                    {# });#}
+
+                    if (object.pk) {
+                        {#alert('pedido_id: ' + object.pk + 'produto_id: ' + produto_id);#}
+                        $.ajax({
+                            url: "/get_tamanho_id_from_ped_prod/",
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            data: {'pedido_id': object.pk, 'produto_id': produto_id},
+                            success: function (tamanho_position_data) {
+                                $.each(tamanho_position_data, function (key, val) {
+
+                                    tamanhoSelector.val(val);
+                                    var text = tamanhoSelector.children("option").filter(":selected").text();
+                                    {#var productSelectFieldText = productSelectField.children("option").filter(":selected").text();#}
+                                    var productSelectFieldText = productSelectField.options[productSelectField.selectedIndex].text;
+
+                                    if (productSelectFieldText !== '---------' && text !== '---------') {
+                                        text = text.split(" - ", 2)[1];
+                                        tbody.children[cont].children[3].children[0].innerHTML = text;
+                                        {#alert(text);#}
+                                        console.log("tamanho recuperado: " + text);
+                                        previousTamanho[cont] = text;
+                                        //se tiver tamanho
+                                        {#alert(' antes: ' + global_total);#}
+                                        computeNewTotalValue(text, "add");
+                                        {#global_total += valor;#}
+                                        {#alert(' depois: ' + global_total);#}
+
+                                    }
+                                });
+
+                                {#input_total.value = parseFloat(global_total).toFixed(2);#}
+                                console.log("final passa para o input: " + global_total);
+                                meuObj.bar = parseFloat(global_total).toFixed(2);
+
+                                return tamanho_position_data;
+                            },
+                            error: function (error) {
+                                console.log("Error:");
+                                console.log(error);
+                                alert("Erro get_tamanho_id_from_ped_prod: " + str(error));
+                            }
+                        });
+                    }
+
+                    {#input_total.value = parseFloat(global_total).toFixed(2);#}
+
+                    return data;
+                },
+                error: function (error) {
+                    console.log("Error:");
+                    console.log(error);
+                    alert("Erro list_product_prices: " + str(error));
+                }
+            });
+        }
 
         {#function atributeSizePricesValue(arr) {#}
         {#    $.each(arr, function (key, val) {#}

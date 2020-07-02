@@ -1095,6 +1095,61 @@ def get_working_hours(request):
     return JsonResponse(data, content_type="application/json")
     # return HttpResponse(docSnapshot.to_dict())
 
+def get_tamanho_id_from_ped_prod(request):
+
+    try:
+        # Check if ID was passed to URL query
+        pedido_id = request.GET.get('pedido_id', None)
+        product_id = request.GET.get('produto_id', None)
+        # print("product_id: %s" % product_id)
+
+        if product_id and pedido_id:
+
+            # tamanho = Tamanho.objects.get(id=Item.objects.get(pedido_id=pedido_id, produto_id=product_id).tamanho_id)
+            try:
+                tamanho_id = {'tamanho_id': Item.objects.get(pedido_id=pedido_id, produto_id=product_id).tamanho_id}
+            except:
+                tamanho_id = None
+
+            return JsonResponse(tamanho_id, safe=False, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            # return JsonResponse(list(Tamanho.objects.all().values()), safe=False, content_type="application/json")
+            return JsonResponse(None, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+
+def list_tamanho_from_db(request):
+
+    try:
+        # Check if ID was passed to URL query
+        tamanho_id = request.GET.get('id', None)
+        print("tamanho_id: %s" % tamanho_id)
+
+        if tamanho_id:
+            # country_id = request.GET.get('country')
+            # cities = City.objects.filter(country_id=country_id).order_by('name')
+            # return render(request, 'hr/city_dropdown_list_options.html', {'cities': cities})
+
+            tamanho = Tamanho.objects.get(id=tamanho_id)
+            # produto = Produto.objects.filter(id=product_id).all().values()
+            tamanho = serializers.serialize('json', [tamanho], )
+            # produto = dict(produto)
+            # print(produto)
+            # all_product_valores = Valore.objects.filter(produto_id=product_id).all()
+            # all_product_sizes = Tamanho.objects.filter(id__in=all_product_valores.values('tamanho_id'))
+
+            # return render(request, 'admin/custom/sizes_dropdown_list_options.html', {'tamanhos': all_product_sizes})
+
+            return JsonResponse(tamanho, safe=False, content_type="application/json")
+        else:
+            # all_nab = [doc.to_dict() for doc in non_alcoholic_beverages_ref.stream()]
+            # return JsonResponse(list(Tamanho.objects.all().values()), safe=False, content_type="application/json")
+            return JsonResponse(None, safe=False, content_type="application/json")
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
 
 def list_products_from_db(request):
 

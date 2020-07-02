@@ -22,6 +22,7 @@ from pizzeria_standard_ws import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('admin/standard_backend_app/pedido/<str:pk>/', admin.site.urls),
     path('pandras-admin/', pandras_admin_site.urls),
     path('', include('pandras_homepage.urls')),
     path('', include('standard_backend_app.urls')),
@@ -29,6 +30,8 @@ urlpatterns = [
     path('list_categories/', include('standard_backend_app.urls')),
     path('list_product_prices/', include('standard_backend_app.urls')),
     path('list_products_from_db/', include('standard_backend_app.urls')),
+    path('list_tamanho_from_db/', include('standard_backend_app.urls')),
+    path('get_tamanho_id_from_ped_prod/', include('standard_backend_app.urls')),
     path('create_user/', include('standard_backend_app.urls')),
     path('makeorder/', include('standard_backend_app.urls')),
     path('list_user_orders/', include('standard_backend_app.urls')),
